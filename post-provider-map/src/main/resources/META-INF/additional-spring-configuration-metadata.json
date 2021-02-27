@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "self_url",
+      "type": "java.lang.String",
+      "description": "Description for self_url."
+    },
+    {
+      "name": "auth-server",
+      "type": "java.lang.String",
+      "description": "Description for auth-server."
+    }
+  ] }

@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/main" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2dca5f68-8c37-4a9c-b15c-9854bfb95e5c" name="Default Changelist" comment="新增前端请求查看快递实物图的接口&#10;事务层增加对快递实物图的在数据库的修改（增加）方法&#10;完成了邮箱验证码的发送与验证接口（使用redis来缓存邮箱验证码）&#10;并将此运用在用户的注册功能上" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/shoutAtBadRoad/micro-oauth2.git" />
+      </set>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="E:\idea support\apache-maven-3.6.3\respository" />
+        <option name="mavenHome" value="$PROJECT_DIR$/../../../../IDEA_SUPPORT/apache-maven-3.6.3" />
+        <option name="userSettingsFile" value="E:\idea support\apache-maven-3.6.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="jdkForImporter" value="1.8" />
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectId" id="1ohW2dGCX7T1BfiUPmQqVit2YfK" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.post.db.own.dao" />
+      <recent name="com.post.db.entity" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\jyp\Desktop\micro-oauth2\post-provider-map\src\main\resources\mapper" />
+      <recent name="C:\Users\jyp\Desktop\micro-oauth2\post-provider-map\src\main\java\com\post\db\own\service" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.MapServiceMain">
+    <configuration name="StrTest.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="post-provider-map" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="StrTest" />
+      <option name="METHOD_NAME" value="test1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserTest.test6" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="post-provider-map" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="UserTest" />
+      <option name="METHOD_NAME" value="test6" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EurekaMain" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="micro-oauth2-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="post.cloud.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="post.cloud.EurekaMain" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MapServiceMain" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="post-provider-map" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.post.db.MapServiceMain" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Oauth2AuthMain" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="micro-oauth2-auth" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="post.cloud.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="post.cloud.Oauth2AuthMain" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Oauth2GatewayMain" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="micro-oauth2-gateway" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="post.cloud.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="post.cloud.Oauth2GatewayMain" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.StrTest.test1" />
+        <item itemvalue="JUnit.UserTest.test6" />
+        <item itemvalue="Spring Boot.EurekaMain" />
+        <item itemvalue="Spring Boot.Oauth2GatewayMain" />
+        <item itemvalue="Spring Boot.Oauth2AuthMain" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2dca5f68-8c37-4a9c-b15c-9854bfb95e5c" name="Default Changelist" comment="" />
+      <created>1613739096047</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1613739096047</updated>
+      <workItem from="1613739098728" duration="127000" />
+      <workItem from="1613788815399" duration="18259000" />
+      <workItem from="1613835857575" duration="3104000" />
+      <workItem from="1613870596645" duration="2487000" />
+      <workItem from="1613894832821" duration="1818000" />
+      <workItem from="1613912018221" duration="5366000" />
+      <workItem from="1613952858620" duration="27638000" />
+      <workItem from="1614003251098" duration="85000" />
+      <workItem from="1614003347877" duration="1679000" />
+      <workItem from="1614044135341" duration="402000" />
+      <workItem from="1614044672155" duration="19060000" />
+      <workItem from="1614074093452" duration="11791000" />
+      <workItem from="1614145186234" duration="12429000" />
+      <workItem from="1614219271978" duration="18173000" />
+      <workItem from="1614297604892" duration="2786000" />
+      <workItem from="1614331987159" duration="620000" />
+      <workItem from="1614336241998" duration="7771000" />
+      <workItem from="1614345204830" duration="25196000" />
+    </task>
+    <task id="LOCAL-00001" summary="添加驿站的预计到件查询">
+      <created>1613977592723</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1613977592723</updated>
+    </task>
+    <task id="LOCAL-00002" summary="增加用户的注册，修改手机号，角色，密码，用户名的接口,以及用户列表的分页查询功能">
+      <created>1613998894365</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1613998894365</updated>
+    </task>
+    <task id="LOCAL-00003" summary="通过手机号查询用户的待取快递&#10;通过驿站号查询驿站内现存快递">
+      <created>1614004330979</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1614004330979</updated>
+    </task>
+    <task id="LOCAL-00004" summary="新增查询驿站内快递列表的接口&#10;新增oauth2中使用手机短信验证码登录的自定义登录模式&#10;新增邮箱验证码的接口">
+      <created>1614092323595</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1614092323595</updated>
+    </task>
+    <task id="LOCAL-00005" summary="新增前端请求查看快递实物图的接口&#10;事务层增加对快递实物图的在数据库的修改（增加）方法&#10;完成了邮箱验证码的发送与验证接口（使用redis来缓存邮箱验证码）&#10;并将此运用在用户的注册功能上">
+      <created>1614261196560</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1614261196560</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+    <MESSAGE value="添加驿站的预计到件查询" />
+    <MESSAGE value="增加用户的注册，修改手机号，角色，密码，用户名的接口,以及用户列表的分页查询功能" />
+    <MESSAGE value="通过手机号查询用户的待取快递&#10;通过驿站号查询驿站内现存快递" />
+    <MESSAGE value="新增查询驿站内快递列表的接口&#10;新增oauth2中使用手机短信验证码登录的自定义登录模式&#10;新增邮箱验证码的接口" />
+    <MESSAGE value="新增前端请求查看快递实物图的接口&#10;事务层增加对快递实物图的在数据库的修改（增加）方法&#10;完成了邮箱验证码的发送与验证接口（使用redis来缓存邮箱验证码）&#10;并将此运用在用户的注册功能上" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增前端请求查看快递实物图的接口&#10;事务层增加对快递实物图的在数据库的修改（增加）方法&#10;完成了邮箱验证码的发送与验证接口（使用redis来缓存邮箱验证码）&#10;并将此运用在用户的注册功能上" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1279" y="357" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1613828160831">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="1279" y="357" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2048.1112@0.0.2048.1112" timestamp="1613828160831" />
+    <state x="306" y="196" key="#com.intellij.ide.util.MemberChooser" timestamp="1614345015092">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="306" y="196" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1614345015092" />
+    <state x="408" y="265" key="#com.intellij.ide.util.MemberChooser/0.0.2048.1112@0.0.2048.1112" timestamp="1614257521442" />
+    <state x="366" y="481" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1613970584569">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="366" y="481" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1613970584569" />
+    <state x="93" y="93" width="1862" height="926" key="DiffContextDialog" timestamp="1613999652820">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="93" y="93" width="1862" height="926" key="DiffContextDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1613999652820" />
+    <state x="450" y="148" key="FileChooserDialogImpl" timestamp="1614336896012">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="450" y="148" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1614336896012" />
+    <state x="600" y="200" key="FileChooserDialogImpl/0.0.2048.1112@0.0.2048.1112" timestamp="1614168769349" />
+    <state width="1143" height="281" key="GridCell.Tab.0.bottom" timestamp="1614432958325">
+      <screen x="-346" y="-1440" width="1707" height="927" />
+    </state>
+    <state width="1143" height="281" key="GridCell.Tab.0.bottom/-346.-1440.1707.927/0.0.1536.824@-346.-1440.1707.927" timestamp="1614432958325" />
+    <state width="1024" height="72" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1614344895751" />
+    <state width="914" height="255" key="GridCell.Tab.0.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1614328053405" />
+    <state width="1143" height="281" key="GridCell.Tab.0.center" timestamp="1614432958325">
+      <screen x="-346" y="-1440" width="1707" height="927" />
+    </state>
+    <state width="1143" height="281" key="GridCell.Tab.0.center/-346.-1440.1707.927/0.0.1536.824@-346.-1440.1707.927" timestamp="1614432958325" />
+    <state width="1024" height="72" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1614344895751" />
+    <state width="914" height="255" key="GridCell.Tab.0.center/0.0.2048.1112@0.0.2048.1112" timestamp="1614328053405" />
+    <state width="1143" height="281" key="GridCell.Tab.0.left" timestamp="1614432958325">
+      <screen x="-346" y="-1440" width="1707" height="927" />
+    </state>
+    <state width="1143" height="281" key="GridCell.Tab.0.left/-346.-1440.1707.927/0.0.1536.824@-346.-1440.1707.927" timestamp="1614432958325" />
+    <state width="1024" height="72" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1614344895751" />
+    <state width="914" height="255" key="GridCell.Tab.0.left/0.0.2048.1112@0.0.2048.1112" timestamp="1614328053405" />
+    <state width="1143" height="281" key="GridCell.Tab.0.right" timestamp="1614432958325">
+      <screen x="-346" y="-1440" width="1707" height="927" />
+    </state>
+    <state width="1143" height="281" key="GridCell.Tab.0.right/-346.-1440.1707.927/0.0.1536.824@-346.-1440.1707.927" timestamp="1614432958325" />
+    <state width="1024" height="72" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1614344895751" />
+    <state width="914" height="255" key="GridCell.Tab.0.right/0.0.2048.1112@0.0.2048.1112" timestamp="1614328053405" />
+    <state width="1143" height="281" key="GridCell.Tab.1.bottom" timestamp="1614432958326">
+      <screen x="-346" y="-1440" width="1707" height="927" />
+    </state>
+    <state width="1143" height="281" key="GridCell.Tab.1.bottom/-346.-1440.1707.927/0.0.1536.824@-346.-1440.1707.927" timestamp="1614432958326" />
+    <state width="1024" height="72" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1614344895752" />
+    <state width="914" height="255" key="GridCell.Tab.1.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1614328053406" />
+    <state width="1143" height="281" key="GridCell.Tab.1.center" timestamp="1614432958326">
+      <screen x="-346" y="-1440" width="1707" height="927" />
+    </state>
+    <state width="1143" height="281" key="GridCell.Tab.1.center/-346.-1440.1707.927/0.0.1536.824@-346.-1440.1707.927" timestamp="1614432958326" />
+    <state width="1024" height="72" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1614344895752" />
+    <state width="914" height="255" key="GridCell.Tab.1.center/0.0.2048.1112@0.0.2048.1112" timestamp="1614328053406" />
+    <state width="1143" height="281" key="GridCell.Tab.1.left" timestamp="1614432958326">
+      <screen x="-346" y="-1440" width="1707" height="927" />
+    </state>
+    <state width="1143" height="281" key="GridCell.Tab.1.left/-346.-1440.1707.927/0.0.1536.824@-346.-1440.1707.927" timestamp="1614432958326" />
+    <state width="1024" height="72" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1614344895752" />
+    <state width="914" height="255" key="GridCell.Tab.1.left/0.0.2048.1112@0.0.2048.1112" timestamp="1614328053406" />
+    <state width="1143" height="281" key="GridCell.Tab.1.right" timestamp="1614432958326">
+      <screen x="-346" y="-1440" width="1707" height="927" />
+    </state>
+    <state width="1143" height="281" key="GridCell.Tab.1.right/-346.-1440.1707.927/0.0.1536.824@-346.-1440.1707.927" timestamp="1614432958326" />
+    <state width="1024" height="72" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1614344895752" />
+    <state width="914" height="255" key="GridCell.Tab.1.right/0.0.2048.1112@0.0.2048.1112" timestamp="1614328053406" />
+    <state width="1143" height="281" key="GridCell.Tab.2.bottom" timestamp="1614431657340">
+      <screen x="-346" y="-1440" width="1707" height="927" />
+    </state>
+    <state width="1143" height="281" key="GridCell.Tab.2.bottom/-346.-1440.1707.927/0.0.1536.824@-346.-1440.1707.927" timestamp="1614431657340" />
+    <state width="1692" height="255" key="GridCell.Tab.2.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1614260197969" />
+    <state width="1143" height="281" key="GridCell.Tab.2.center" timestamp="1614431657340">
+      <screen x="-346" y="-1440" width="1707" height="927" />
+    </state>
+    <state width="1143" height="281" key="GridCell.Tab.2.center/-346.-1440.1707.927/0.0.1536.824@-346.-1440.1707.927" timestamp="1614431657340" />
+    <state width="1692" height="255" key="GridCell.Tab.2.center/0.0.2048.1112@0.0.2048.1112" timestamp="1614260197969" />
+    <state width="1143" height="281" key="GridCell.Tab.2.left" timestamp="1614431657340">
+      <screen x="-346" y="-1440" width="1707" height="927" />
+    </state>
+    <state width="1143" height="281" key="GridCell.Tab.2.left/-346.-1440.1707.927/0.0.1536.824@-346.-1440.1707.927" timestamp="1614431657340" />
+    <state width="1692" height="255" key="GridCell.Tab.2.left/0.0.2048.1112@0.0.2048.1112" timestamp="1614260197969" />
+    <state width="1143" height="281" key="GridCell.Tab.2.right" timestamp="1614431657340">
+      <screen x="-346" y="-1440" width="1707" height="927" />
+    </state>
+    <state width="1143" height="281" key="GridCell.Tab.2.right/-346.-1440.1707.927/0.0.1536.824@-346.-1440.1707.927" timestamp="1614431657340" />
+    <state width="1692" height="255" key="GridCell.Tab.2.right/0.0.2048.1112@0.0.2048.1112" timestamp="1614260197969" />
+    <state x="725" y="276" key="RollbackChangesDialog" timestamp="1614219593341">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="725" y="276" key="RollbackChangesDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1614219593341" />
+    <state x="194" y="113" key="SettingsEditor" timestamp="1614345181155">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="194" y="113" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1614345181155" />
+    <state x="258" y="200" key="SettingsEditor/0.0.2048.1112@0.0.2048.1112" timestamp="1613996600688" />
+    <state x="800" y="469" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1614044157333">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="800" y="469" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2048.1112@0.0.2048.1112" timestamp="1614044157333" />
+    <state x="796" y="288" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1613996494400">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="796" y="288" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1613996494400" />
+    <state x="559" y="-1234" width="672" height="566" key="search.everywhere.popup" timestamp="1614414711235">
+      <screen x="-346" y="-1440" width="1707" height="927" />
+    </state>
+    <state x="559" y="-1234" width="672" height="566" key="search.everywhere.popup/-346.-1440.1707.927/0.0.1536.824@-346.-1440.1707.927" timestamp="1614414711235" />
+    <state x="1086" y="247" width="672" height="678" key="search.everywhere.popup/0.0.2048.1112@0.0.2048.1112" timestamp="1614305813886" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/post-provider-map/src/main/java/com/post/db/service/StationInfoServiceImpl.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/micro-oauth2-gateway/src/main/java/post/cloud/filter/IgnoreUrlsRemoveJwtFilter.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/micro-oauth2-gateway/src/main/java/post/cloud/config/CorsConfig.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/micro-oauth2-auth/src/main/java/post/cloud/component/JwtTokenEnhancer.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/post-provider-map/src/main/java/com/post/db/mail/controller/EmailController.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/post-provider-map/src/main/java/com/post/db/controller/UploadController.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/post-provider-map/src/main/java/com/post/db/upservice/ImageServiceImpl.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/post-provider-map/src/main/java/com/post/db/utils/StringUtils.java</url>
+          <line>53</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/post-provider-map/src/main/java/com/post/db/upservice/BusinessServiceImpl.java</url>
+          <line>40</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/post-provider-map/src/main/java/com/post/db/schedule/SimulationTask.java</url>
+          <line>53</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo typeName="org.springframework.web.server.handler.DefaultWebFilterChain" fieldName="allFilters" />
+      </pinned-members>
+    </pin-to-top-manager>
+  </component>
+</project>

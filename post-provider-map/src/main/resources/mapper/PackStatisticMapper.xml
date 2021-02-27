@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.post.db.dao.PackStatisticDao">
+
+    <insert id="addInPackStatistic">
+        insert into package_in_statistic(station,number,expressCompany,curDate)
+        values (#{stationId},#{number},#{exprsscompany},#{curDate})
+    </insert>
+    <insert id="addInPackStatistics">
+        insert into package_in_statistic(station,number,expressCompany,curDate)
+        <foreach collection="packSt" item="item" separator=",">
+            values (
+             #{item.stationId},#{item.number},#{item.expressCompany},#{item.curDate}
+            )
+        </foreach>
+    </insert>
+    <insert id="addOutPackStatistic">
+        insert into package_out_statistic(station,number,expressCompany,curDate)
+        values (#{stationId},#{number},#{exprsscompany},#{curDate})
+    </insert>
+    <insert id="addOutPackStatistics">
+        insert into package_out_statistic(station,number,expressCompany,curDate)
+        <foreach collection="packSt" item="item" separator=",">
+            values (
+            #{item.stationId},#{item.number},#{item.expressCompany},#{item.curDate}
+            )
+        </foreach>
+    </insert>
+
+    <resultMap id="getPackInStatistic" type="com.post.db.entities.PackSt">
+        <result property="stationId" column="station"/>
+        <result property="number" column="inNumber"/>
+        <result property="expressCompany" column="expressCompany"/>
+        <result property="curDate" column="curDate"/>
+    </resultMap>
+
+    <select id="getInStatisticByStation" resultMap="getPackInStatistic">
+        select station,sum(number) inNumber,left(curDate,10) curDate from package_in_statistic
+        where station=#{stationId} and curDate between date_sub(curDate(),interval #{part} day) and curDate()
+        group by curDate
+    </select>
+    <select id="getInStatisticByStationAndCompany" resultMap="getPackInStatistic">
+        select station,sum(number) inNumber,expressCompany,curDate from package_in_statistic
+        where station=#{stationId} and curDate between date_sub(curDate(),interval #{part} day) and curDate()
+        group by expressCompany
+        order by station,expressCompany
+    </select>
+    <select id="getOutStatisticByStation" resultMap="getPackInStatistic">
+        select station,sum(number) inNumber,curDate from package_out_statistic
+        where station=#{stationId} and curDate between date_sub(curDate(),interval #{part} day) and curDate()
+        group by curDate
+    </select>
+    <select id="getOutStatisticByStationAndCompany" resultMap="getPackInStatistic">
+        select station,sum(number) inNumber,expressCompany,curDate from package_out_statistic
+        where station=#{stationId} and curDate between date_sub(curDate(),interval #{part} day) and curDate()
+        group by expressCompany
+        order by station,expressCompany
+    </select>
+
+    <select id="getInStatisticByArea" resultType="java.lang.Integer">
+        select sum(number) from package_in_statistic p,p_station s
+        where p.station=s.id and s.areaId like #{areaId}"%" and p.curDate between date_sub(curDate(),interval #{part} day) and curDate()
+        group by p.curDate
+        order by p.curDate
+        limit 0,7
+    </select>
+
+    <select id="getOutStatisticByArea" resultType="java.lang.Integer">
+        select sum(number) from package_out_statistic p,p_station s
+        where p.station=s.id and s.areaId like #{areaId}"%" and p.curDate between date_sub(curDate(),interval #{part} day) and curDate()
+        group by p.curDate
+        order by p.curDate
+        limit 0,7
+    </select>
+
+</mapper>

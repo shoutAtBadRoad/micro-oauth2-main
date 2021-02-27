@@ -1,0 +1,39 @@
+server:
+  port: 9401
+spring:
+  profiles:
+    active: dev
+  application:
+    name: micro-oauth2-auth
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  redis:
+    database: 0
+    port: 6379
+    host: localhost
+    password:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.101.30:3306/post?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&userSSL=false
+    username: jyp
+    password: jyjyp123
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+eureka:
+  instance:
+    instance-id: auth1
+  client:
+    service-url:
+      register-with-eureka: true
+      fetch-register: true
+      defaultZone: http://localhost:7001/eureka
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml

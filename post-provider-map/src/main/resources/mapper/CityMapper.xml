@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.post.db.dao.CityDao">
+    <insert id="addCityDistance">
+        insert into city_distance(city1,city2,days)
+        values
+        <foreach collection="cityDistances" item="item" separator="," >
+            (
+                #{item.city1},
+                #{item.city2},
+                #{item.days}
+            )
+        </foreach>
+    </insert>
+
+    <select id="getCityName" resultType="java.lang.String">
+        select city from cities where cityid=#{id}
+    </select>
+    <select id="getCityList" resultType="com.post.db.entities.City">
+        select * from cities
+    </select>
+</mapper>

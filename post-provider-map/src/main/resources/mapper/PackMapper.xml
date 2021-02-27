@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.post.db.dao.PackageDao">
+
+    <insert id="addOnePack" parameterType="com.post.db.entities.Pack">
+        insert into p_package(packId,receiverPhone,station,putInTime,shelf,status,expressCompany)
+        values (
+            #{packId},#{receiverPhone},#{stationId},#{putIn},#{shelfId},#{status},#{expressCompany}
+            )
+    </insert>
+    <insert id="putPackIn">
+        insert into p_package(packId,receiverPhone,station,putInTime,shelf,status,expressCompany)
+        values (#{param1},"123123123",#{param3},#{param5},#{param2},1,#{param4});
+    </insert>
+    <update id="addImage">
+        update p_package set image=#{image} where packId=#{packId}
+    </update>
+    <update id="updateOnePack">
+        update p_package
+        <set>
+            <if test="packId!=null ">packId=#{packId},</if>
+            <if test="receiverPhone!=null ">receiverPhone=#{receiverPhone},</if>
+            <if test="stationId!=0 ">station=#{stationId},</if>
+            <if test="putIn!=null ">putInTime=#{putIn},</if>
+            <if test="shelfId!=0 ">shelf=#{shelfId},</if>
+            <if test="status!=null ">status=#{status},</if>
+            <if test="expressCompany!=null ">expressCompany=#{expressCompany},</if>
+            <if test="image!=null ">image=#{image}</if>
+        </set>
+        where packId=#{packId}
+    </update>
+    <select id="getOnePackById" resultType="com.post.db.entities.Pack">
+        select * from p_package where id=#{id}
+    </select>
+
+    <select id="getPackNumberByCompanyAndArea" resultType="com.post.db.entities.Smap">
+        select e.expressName name,count(*) value from p_package p,p_express e
+        where e.e_id = p.expressCompany and p.station in (select s.id from p_station s where s.areaId like #{areaId}"%")
+        group by name;
+    </select>
+
+    <select id="getPackNumber" resultType="java.lang.Integer">
+        select count(*) from p_package where status=#{status} and station in (select s.id from p_station s where s.areaId like #{areaId}"%")
+    </select>
+
+    <resultMap id="getPack" type="com.post.db.entities.Pack">
+        <id property="id" column="id"/>
+        <result property="packId" column="packId"/>
+        <result property="receiverPhone" column="receiverPhone"/>
+        <result property="stationId" column="station"/>
+        <result property="putIn" column="putInTime"/>
+        <result property="shelfId" column="shelf"/>
+        <result property="expressCompany" column="expressCompany"/>
+    </resultMap>
+
+    <select id="getPackListByMobile" resultMap="getPack">
+        select p.id id,p.packId packId,p.receiverPhone receiverPhone,p.station station, p.shelf shelf , e.expressName expressCompany
+        from p_package p,p_express e
+        where p.receiverPhone=#{mobile} and p.expressCompany=e.e_id and p.status=1
+    </select>
+    <select id="getPackListByStation" resultMap="getPack">
+        select p.id id,p.packId packId,p.receiverPhone receiverPhone,p.station station, p.shelf shelf , e.expressName expressCompany, p.putInTime putInTime
+        from p_package p,p_express e
+        where p.station=#{stationId} and p.expressCompany=e.e_id and p.status=1
+    </select>
+    <select id="getPackListByMobileAndStation" resultMap="getPack">
+        select p.id id,p.packId packId,p.receiverPhone receiverPhone,p.station station, p.shelf shelf , e.expressName expressCompany, p.putInTime putInTime
+        from p_package p,p_express e
+        where p.receiverPhone=#{mobile} and p.expressCompany=e.e_id and p.status=1 and p.station=#{stationId}
+    </select>
+
+    <resultMap id="getImage" type="com.post.db.entity.ImageByte">
+        <result property="imgBytes" column="image" jdbcType="BLOB" typeHandler="org.apache.ibatis.type.BlobTypeHandler"/>
+    </resultMap>
+
+    <select id="getImage" resultMap="getImage">
+        select image from p_package where packId=#{packId}
+    </select>
+    <select id="getPacks" resultType="com.post.db.entities.Pack">
+        select p.id id,p.packId packId,p.receiverPhone receiverPhone,p.station station, p.shelf shelf , e.expressName expressCompany
+        from p_package p,p_express e
+        where p.expressCompany=e.e_id
+    </select>
+    <select id="getPackListByStatus" resultMap="getPack">
+        select * from p_package where status=#{status}
+    </select>
+
+</mapper>

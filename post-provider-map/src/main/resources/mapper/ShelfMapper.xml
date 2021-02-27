@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.post.db.dao.ShelfDao">
+
+    <resultMap id="getShelf" type="com.post.db.entities.Shelf">
+        <id property="id" column="id"/>
+        <result property="stationId" column="station"/>
+        <result property="capacity" column="capacity"/>
+        <result property="stock" column="stock"/>
+    </resultMap>
+    <resultMap id="getShelfCount" type="com.post.db.entities.ShelfCount">
+        <result property="stationId" column="station"/>
+        <result property="capacity" column="capacity"/>
+        <result property="stock" column="stock"/>
+    </resultMap>
+    <insert id="addOneShelf" parameterType="com.post.db.entities.Shelf">
+        insert into p_shelf(station,capacity,stock) values (#{stationId},#{capacity},#{stock})
+    </insert>
+    <update id="updateOneShelf">
+        update p_shelf
+        <set>
+            <if test="stationId!=null">station=#{stationId},</if>
+            <if test="capacity!=null">capacity=#{capacity},</if>
+            <if test="stock!=null">stock=#{stock}</if>
+        </set>
+        where id=#{id}
+    </update>
+    <update id="updateShelfStock">
+        update p_shelf
+        <foreach collection="list" item="item" index="index" separator=";">
+            set
+            capacity=capacity+stock-#{item.stock},
+            stock=#{item.stock}
+            where id=#{item.stationId}
+        </foreach>
+    </update>
+    <update id="putOnePackById">
+        update p_shelf set
+            capacity=capacity-1,
+            stock=stock+1
+        where id=#{id}
+    </update>
+    <update id="getOnePackById">
+        update p_shelf set
+            capacity=capacity+1,
+            stock=stock-1
+        where id=#{id}
+    </update>
+    <update id="changePackByShelf">
+        update p_shelf set
+            stock=stock+#{value}
+        where station=#{station} and no=#{no} and (stock+#{value})&lt;=capacity
+    </update>
+    <select id="getOneShelfById" resultMap="getShelf">
+        select * from p_shelf where id=#{id}
+    </select>
+    <select id="getShelfByStation" resultMap="getShelf">
+        select * from p_shelf where station=#{id}
+    </select>
+    <select id="getAllShelf" resultMap="getShelf">
+        select * from p_shelf
+    </select>
+    <select id="countShelfByStation" resultMap="getShelfCount">
+        select station,sum(capacity) capacity,sum(stock) stock from p_shelf
+        group by station
+    </select>
+    <resultMap id="ShelfByCompany" type="com.post.db.entities.ShelfCountByCompany">
+        <result property="shelfId" column="shelf"/>
+        <result property="stationId" column="station"/>
+        <result property="JD" column="jd"/>
+        <result property="SF" column="sf"/>
+        <result property="ST" column="st"/>
+        <result property="YD" column="yd"/>
+        <result property="YT" column="yt"/>
+        <result property="ZT" column="zt"/>
+        <result property="YZ" column="yz"/>
+        <result property="total" column="total"/>
+    </resultMap>
+    <select id="countShelfByCompany" resultMap="ShelfByCompany">
+        select shelf,station,
+            count(case when expressCompany=1 then expressCompany end) jd,
+            count(case when expressCompany=2 then expressCompany end) sf,
+            count(case when expressCompany=3 then expressCompany end) st,
+            count(case when expressCompany=4 then expressCompany end) yd,
+            count(case when expressCompany=5 then expressCompany end) yt,
+            count(case when expressCompany=6 then expressCompany end) zt,
+            count(case when expressCompany=7 then expressCompany end) yz,
+            count(*) total
+        from p_package
+        where status=#{statusId} and putIn between date_sub(curdate(),interval #{part} day) and curdate()
+        group by shelf,station
+        order by shelf,station
+    </select>
+    <select id="getStationByShelf" resultType="java.lang.Integer">
+        select station from p_shelf where id=#{shelfId}
+    </select>
+
+    <select id="getShelfIdByStation" resultType="java.lang.Integer">
+        select  id from p_shelf where station=#{id}
+    </select>
+
+</mapper>

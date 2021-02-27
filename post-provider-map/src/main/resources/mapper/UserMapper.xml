@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.post.db.dao.UserDao">
+    <resultMap id="getUser" type="com.post.db.entity.User">
+        <id property="id" column="id"/>
+        <result property="username" column="userName"/>
+        <result property="password" column="passWd"/>
+        <result property="mobile" column="phoneNumber"/>
+        <result property="mail" column="email"/>
+        <result property="role" column="category"/>
+    </resultMap>
+
+    <insert id="addOneUser" parameterType="com.post.db.entity.User">
+        insert into p_user(userName,passWd,phoneNumber,category,email)
+        values (#{username}, #{password}, #{mobile}, 1,#{mail})
+    </insert>
+
+    <update id="updateUser" parameterType="com.post.db.entity.User">
+        update p_user
+        <set>
+            <if test="username!=null">userName=#{username},</if>
+            <if test="password!=null">passWd=#{password},</if>
+            <if test="mobile!=null">phoneNumber=#{mobile},</if>
+            <if test="mail!=null">email=#{mail},</if>
+            <if test="code!=null">code=#{code},</if>
+            <if test="role!=null">category=#{role}</if>
+        </set>
+       where id=#{id}
+    </update>
+
+    <select id="getOneUserById" resultMap="getUser">
+        select * from p_user where id=#{id}
+    </select>
+
+    <select id="getOneUserByName" resultMap="getUser">
+        select * from p_user where userName=#{username}
+    </select>
+
+    <select id="getOneUserByMobile" resultMap="getUser">
+        select * from p_user where phoneNumber=#{mobile}
+    </select>
+
+    <select id="getUsers" resultMap="getUser">
+        select p.userName userName,p.passWd passWd,p.phoneNumber phoneNumber,
+         p.email email,y.name category
+         from p_user p,yinshe y where p.category=y.id
+
+    </select>
+    <select id="getOneUserByMail" resultMap="getUser">
+        select * from p_user where email=#{mail}
+    </select>
+
+</mapper>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.post.db.own.dao.MenuDao">
+    <resultMap id="MenuList" type="com.post.db.entity.Menu">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="path" column="path"/>
+        <collection property="children" column="children" ofType="com.post.db.entity.Menu">
+            <id property="id" column="cid"/>
+            <result property="name" column="cname"/>
+            <result property="path" column="cpath"/>
+        </collection>
+    </resultMap>
+    <select id="getMenuList" resultMap="MenuList">
+        select
+            f.id id,
+            f.name name,
+            f.path path,
+            c.id cid,
+            c.name cname,
+            c.path cpath
+        from p_menu f,p_menu c
+        where f.father=-1 and f.id=c.father
+    </select>
+</mapper>

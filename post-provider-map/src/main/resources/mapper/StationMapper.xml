@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.post.db.dao.StationDao">
+    <resultMap id="getStation" type="com.post.db.entities.Station">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="stationName" jdbcType="VARCHAR"/>
+        <result property="longtitude" column="longtitude" jdbcType="DOUBLE"/>
+        <result property="latitude" column="latitude" jdbcType="DOUBLE"/>
+        <result property="capacity" column="capacity" jdbcType="INTEGER"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+        <result property="areaId" column="areaId" jdbcType="VARCHAR"/>
+<!--        <association property="provinceId" column="provinceId" javaType="com.post.db.entities.Province">-->
+<!--            <id property="id" column="pid"/>-->
+<!--            <result property="provinceId" column="provinceid"/>-->
+<!--            <result property="provinceName" column="provincename"/>-->
+<!--        </association>-->
+<!--        <association property="cityId" column="cityId" javaType="com.post.db.entities.City">-->
+<!--            <id property="id" column="cid"/>-->
+<!--            <result property="cityId" column="cityid"/>-->
+<!--            <result property="cityName" column="cityname"/>-->
+<!--        </association>-->
+    </resultMap>
+    <insert id="addOneStation" parameterType="com.post.db.entities.Station" keyProperty="id">
+        insert into p_station(stationName,longtitude,latitude,capacity,areaId,address)
+        values (#{name},#{longtitude},#{latitude},#{capacity},#{areaId},#{address})
+    </insert>
+    <insert id="addCount">
+        insert into count_station (areaId,number)
+        values
+        <foreach collection="count" item="item" index="index" separator=",">
+            (
+             #{item.areaId},
+             #{item.number}
+            )
+        </foreach>
+    </insert>
+    <delete id="removeStationByID" parameterType="integer">
+        delete from p_station where id=#{id}
+    </delete>
+
+<!--    <select id="getStationById" resultMap="getStation" >-->
+<!--        select-->
+<!--            s.id id,-->
+<!--            s.stationName stationName,-->
+<!--            s.longtitude longtitude,-->
+<!--            s.latitude latitude,-->
+<!--            s.capacity capacity,-->
+<!--            s.address address,-->
+<!--            p.id pid,-->
+<!--            p.provinceid provinceid,-->
+<!--            p.province provincename,-->
+<!--            c.id cid,-->
+<!--            c.cityid cityid,-->
+<!--            c.city cityname-->
+<!--        from p_station s,provinces p,cities c-->
+<!--        where s.id=#{id} and p.provinceid=s.province and c.cityid=s.city;-->
+<!--    </select>-->
+
+<!--    <select id="getStationByGeo" resultMap="getStation">-->
+<!--        select-->
+<!--            s.id id,-->
+<!--            s.stationName stationName,-->
+<!--            s.longtitude longtitude,-->
+<!--            s.latitude latitude,-->
+<!--            s.capacity capacity,-->
+<!--            s.address address,-->
+<!--            p.id pid,-->
+<!--            p.provinceid provinceid,-->
+<!--            p.province provincename,-->
+<!--            c.id cid,-->
+<!--            c.cityid cityid,-->
+<!--            c.city cityname-->
+<!--        from p_station s,provinces p,cities c-->
+<!--        where s.address like '%'||#{address}||'%' and p.provinceid=s.province and c.cityid=s.city;-->
+<!--    </select>-->
+    <select id="countStation" resultType="java.lang.Integer">
+        select count(*) from p_station
+        <where>
+            <if test="areaId != 0">
+                areaId like #{areaId}"%"
+            </if>
+        </where>
+    </select>
+    <select id="getStationById" resultMap="getStation">
+        select * from p_station where id=#{id}
+    </select>
+    <select id="getStationByGeo" resultMap="getStation">
+        select * from p_station
+        where address like '%'||#{address}||'%'
+    </select>
+    <select id="getCount" resultType="com.post.db.entities.Count">
+        select areaid,count(*) number from p_station
+        group by areaid;
+    </select>
+    <select id="getCityCount" resultType="com.post.db.entities.Count">
+        select left(areaId,4) areaId,sum(number) number from count_station
+        group by left(areaId,4)
+    </select>
+    <select id="getProvinceCount" resultType="com.post.db.entities.Count">
+        select left(areaId,2) areaId,sum(number) number from count_station
+        group by left(areaId,2)
+    </select>
+
+    <select id="getStationByArea" resultMap="getStation">
+        select * from p_station where areaId=#{areaId}
+    </select>
+
+    <select id="getAllStationLocation" resultType="com.post.db.entities.Location">
+        select id,longtitude,latitude from p_station
+    </select>
+
+
+</mapper>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.post.db.dao.PackLogDao">
+    <resultMap id="getPackLog" type="com.post.db.entities.PackStored">
+        <result property="packId" column="packId"/>
+        <result property="curDate" column="curDate"/>
+        <result property="location" column="location"/>
+        <result property="station" column="station"/>
+    </resultMap>
+    <insert id="addInLog">
+        insert into package_in_log(packId,curDate,location,station) values (#{packId},#{curDate},#{location},#{station})
+    </insert>
+    <insert id="addOutLog">
+        insert into package_out_log(packId,curDate) values (#{packId},#{curDate})
+    </insert>
+    <select id="getOneInLogById" resultType="com.post.db.entities.PackLog">
+        select packId,curDate from package_in_log where id=#{id}
+    </select>
+    <select id="getOneInLogByPackId" resultMap="getPackLog">
+        select * from package_in_log where packId=#{PackId}
+    </select>
+    <select id="getInLogByTime" resultType="com.post.db.entities.PackLog">
+        select packId,curDate from package_in_log where curDate between date_sub(now(),interval #{part} day) and now()
+    </select>
+    <select id="getAllInLog" resultType="com.post.db.entities.PackLog">
+        select packId,curDate from package_in_log
+    </select>
+    <select id="getPackageInNumber" resultType="java.lang.Integer">
+        select count(*) from package_in_log p left outer join p_package q on p.packId=q.packId
+        where q.station=#{stationId} and q.putIn between date_sub(now(),interval #{part} day) and now()
+    </select>
+    <resultMap id="getPackInStatistic" type="com.post.db.entities.PackSt">
+        <result property="stationId" column="station"/>
+        <result property="number" column="inNumber"/>
+        <result property="expressCompany" column="expressCompany"/>
+        <result property="curDate" column="curDate"/>
+    </resultMap>
+    <select id="getPackInStatistic" resultMap="getPackInStatistic">
+        select q.station station,count(*) inNumber,q.expressCompany expressCompany,curDate() curDate
+        from package_in_log p,p_package q
+        where p.packId=q.packId and TO_DAYS(curDate)=TO_DAYS(NOW())
+        group by station,expressCompany
+        order by station,expressCompany
+    </select>
+    <select id="getOneOutLogByPackId" resultType="com.post.db.entities.PackLog">
+        select packId,curDate from package_out_log where packId=#{PackId}
+    </select>
+    <select id="getOutLogByTime" resultType="com.post.db.entities.PackLog">
+        select packId,curDate from package_out_log where curDate between date_sub(now(),interval #{part} day) and now()
+    </select>
+    <select id="getAllOutLog" resultType="com.post.db.entities.PackLog">
+        select packId,curDate from package_out_log
+    </select>
+    <select id="getPackageOutNumber" resultType="java.lang.Integer">
+        select count(*) from package_out_log p left outer join p_package q on p.packId=q.packId
+        where q.station=#{stationId} and q.putIn between date_sub(now(),interval #{part} day) and now()
+    </select>
+    <select id="getPackOutStatistic" resultMap="getPackInStatistic">
+        select q.station station,count(*) inNumber,q.expressCompany expressCompany,curDate() curDate
+        from package_out_log p,p_package q
+        where p.packId=q.packId and TO_DAYS(curDate)=TO_DAYS(NOW())
+        group by station,expressCompany
+        order by station,expressCompany
+    </select>
+
+    <select id="getPackInByArea" resultType="java.lang.Integer">
+        select count(*) from package_in_log p,p_package q
+        where p.packId=q.packId and day(p.curDate)=day(now()) and q.station in (select s.id from p_station s where s.areaId like #{areaId}"%")
+    </select>
+
+    <select id="getPackOutByArea" resultType="java.lang.Integer">
+        select count(*) from package_out_log p,p_package q
+        where p.packId=q.packId and day(p.curDate)=day(now()) and q.station in (select s.id from p_station s where s.areaId like #{areaId}"%")
+    </select>
+
+
+</mapper>

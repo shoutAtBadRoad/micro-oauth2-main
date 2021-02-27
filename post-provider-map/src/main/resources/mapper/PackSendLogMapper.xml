@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.post.db.dao.PackSendLogDao">
+
+    <insert id="addOnePack">
+        insert into package_send_log(pack_id,origin,terminal,create_time)
+        values (#{packId}, #{origin}, #{terminal}, #{createTime})
+    </insert>
+
+    <resultMap id="getPackSend" type="com.post.db.entities.PackSend">
+        <id property="packId" column="packId"/>
+        <result property="origin" column="origin"/>
+        <result property="terminal" column="terminal"/>
+        <result property="createTime" column="createTime"/>
+    </resultMap>
+
+    <select id="getPacksByTerminal" resultMap="getPackSend">
+        select pack_id packId, origin,terminal,create_time createTime
+        from package_send_log
+        where arrived=0 and terminal=#{terminal}
+    </select>
+
+    <select id="getPackNotArrived" resultType="com.post.db.entities.Smap">
+         select count(*) value ,left(date_sub(s.create_time,interval -c.days day),10) name
+         from package_send_log s, city_distance c
+         where s.terminal=1 and s.arrived=0 and left(c.city1,2)=left(#{areaId},2) and left(c.city2,2)=(select left(p.areaId,2) from p_station p where p.id=s.origin LIMIT 1)
+         group by name
+    </select>
+
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="post.cloud.dao.UserDao">
+    <resultMap id="getUser" type="post.cloud.domain.UserIf">
+        <id property="id" column="id"/>
+        <result property="username" column="userName"/>
+        <result property="password" column="passWd"/>
+        <result property="role" column="role"/>
+        <result property="code" column="code"/>
+    </resultMap>
+    <select id="getUserByName" resultMap="getUser">
+        select p.id id,p.userName userName,p.passWd passWd,y.name role
+        from p_user p,yinshe y
+        where userName=#{username} and p.category=y.id
+    </select>
+    <select id="getUserByMobile" resultMap="getUser">
+        select p.id id,p.userName userName,p.passWd passWd,y.name role,p.code code
+        from p_user p,yinshe y
+        where phoneNumber=#{mobile} and p.category=y.id
+    </select>
+</mapper>
