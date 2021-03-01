@@ -86,5 +86,17 @@
     <select id="getPackListByStatus" resultMap="getPack">
         select * from p_package where status=#{status}
     </select>
+    <select id="getPackInStatisticDaliy" resultType="com.post.db.entities.TimeMap">
+        select
+        DATE_FORMAT(putInTime,'%H') as time,
+    -- 	sum(case when station=1 then 1 else 0 end) as "驿站1", '%H:%i:%s'
+    -- 	sum(case when station=2 then 1 else 0 end) as "驿站2",
+        count(*) as value
+        from p_package
+        where
+            putInTime between  DATE_FORMAT(NOW(),'%Y-%m-%d 00:00:00')  AND DATE_FORMAT(NOW(),'%Y-%m-%d 23:59:59') and station=#{stationId}
+        group by time
+        order by time;
+    </select>
 
 </mapper>

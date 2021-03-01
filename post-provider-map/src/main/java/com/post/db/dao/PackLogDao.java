@@ -12,35 +12,35 @@ import java.util.List;
 @Mapper
 @Component
 public interface PackLogDao {
-    public int addInLog(PackStored log);
+    int addInLog(PackStored log);
 
-    public PackLog getOneInLogById(int id);
+    PackLog getOneInLogById(int id);
 
-    public PackStored getOneInLogByPackId(String packId);
+    PackStored getOneInLogByPackId(String packId);
 
-    public List<PackLog> getInLogByTime(@Param("part") int part);
+    List<PackLog> getInLogByTime(@Param("part") int part);
 
-    public List<PackLog> getAllInLog();
+    List<PackLog> getAllInLog();
 
-    public int addOutLog(PackLog log);
+    int addOutLog(PackLog log);
 
-    public int getPackageInNumber(@Param("stationId") int stationId,@Param("part") int part);
+    int getPackageInNumber(@Param("stationId") int stationId,@Param("part") int part);
 
-    public List<PackSt> getPackInStatistic();
+    List<PackSt> getPackInStatistic();
 
-    public PackLog getOneOutLogByPackId(@Param("packId") int packId);
+    PackLog getOneOutLogByPackId(@Param("packId") int packId);
 
-    public List<PackLog> getOutLogByTime(@Param("part") int part);
+    List<PackLog> getOutLogByTime(@Param("part") int part);
 
-    public List<PackLog> getAllOutLog();
+    List<PackLog> getAllOutLog();
 
-    public int getPackageOutNumber(@Param("stationId") int stationId,@Param("part") int part);
+    int getPackageOutNumber(@Param("stationId") int stationId,@Param("part") int part);
 
-    public List<PackSt> getPackOutStatistic();
+    List<PackSt> getPackOutStatistic();
 
-    public int getPackInByArea(@Param("areaId") String areaId);
+    int getPackInByArea(@Param("areaId") String areaId);
 
-    public int getPackOutByArea(@Param("areaId")String areaId);
+    int getPackOutByArea(@Param("areaId")String areaId);
 
 
 }

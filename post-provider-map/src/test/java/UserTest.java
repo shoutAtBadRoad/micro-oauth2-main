@@ -3,11 +3,16 @@ import com.post.db.MapServiceMain;
 import com.post.db.dao.PackageDao;
 import com.post.db.dao.UserDao;
 import com.post.db.entities.Pack;
+import com.post.db.entities.PackSt;
 import com.post.db.entity.CommonResult;
 import com.post.db.entity.ImageByte;
 import com.post.db.entity.QueryInfo;
 import com.post.db.entity.User;
+import com.post.db.service.PackService;
+import com.post.db.service.PackStatisticService;
 import com.post.db.service.UserService;
+import com.post.db.utils.YSTime;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,6 +34,7 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = MapServiceMain.class)
 @TestPropertySource(locations = "classpath:application.yml")
+@Slf4j
 public class UserTest {
 
     @Resource
@@ -118,6 +124,36 @@ public class UserTest {
 //        String packId = "32435243";
 //        CommonResult forObject = new RestTemplate().postForObject("http://localhost:9222/upload/packImg", null,CommonResult.class, imgStr, packId);
 //        System.out.println(forObject);
+    }
+
+    @Resource
+    private PackService packService;
+    @Resource
+    private PackStatisticService packStatisticService;
+
+    @Test
+    public void test7(){
+        List<PackSt> list = packService.getPackInStatisticDaily();
+        if(list.size()==0){
+            list.add(new PackSt(1,0,"1", YSTime.getYMD()));
+        }
+        int i = packStatisticService.addInPackStatistics(list);
+        if(i>0){
+            log.info(Thread.currentThread().getId()+"in统计成功");
+        }else {
+            log.info(Thread.currentThread().getId()+"in统计失败");
+        }
+        list = packService.getPackOutStatisticDaily();
+        if(list.size()==0){
+            list.add(new PackSt(1,0,"1", YSTime.getYMD()));
+        }
+        i = packStatisticService.addOutPackStatistics(list);
+        if(i>0){
+            log.info(Thread.currentThread().getId()+"out统计成功");
+        }else {
+            log.info(Thread.currentThread().getId()+"out统计失败");
+        }
+        log.info(Thread.currentThread().getId()+"sleep.......");
     }
 
 }

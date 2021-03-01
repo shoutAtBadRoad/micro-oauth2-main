@@ -15,9 +15,12 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.101.30:3306/post?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&userSSL=false
-    username: jyp
-    password: jyjyp123
+#    url: jdbc:mysql://localhost:3306/post?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&userSSL=false
+#    username: jyp
+#    password: jyjyp123
+    url: jdbc:mysql://101.133.137.140:3306/post?serverTimezone=UTC
+    username: root
+    password: lcl_alihost_2019070270
 
 
 management:

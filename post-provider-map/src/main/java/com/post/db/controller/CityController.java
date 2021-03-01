@@ -2,6 +2,7 @@ package com.post.db.controller;
 
 import com.post.db.entity.CommonResult;
 import com.post.db.service.CityService;
+import com.post.db.service.ProvinceService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -13,12 +14,14 @@ import javax.annotation.Resource;
 
 @RestController
 @Slf4j
-@Api(tags = "CityController")
+@Api(tags = "获取城市信息")
 public class CityController {
     @Resource
     private CityService cityService;
+    @Resource
+    private ProvinceService provinceService;
 
-    @ApiOperation(value = "getCityName")
+    @ApiOperation(value = "获取县区信息")
     @GetMapping(value = "/map/city/{id}")
     public CommonResult getCityName(@PathVariable("id")String cityId){
         String city = cityService.getCityName(cityId);
@@ -27,6 +30,19 @@ public class CityController {
             return new CommonResult(200,"查询成功",city);
         }else {
             log.info("查询失败，cityId："+cityId);
+            return new CommonResult(400,"查询失败",null);
+        }
+    }
+
+    @ApiOperation(value = "获取省信息")
+    @GetMapping("/map/province/{id}")
+    public CommonResult getProvince(@PathVariable("id") String provinceId){
+        String province = provinceService.getProvince(provinceId);
+        if(province!=null){
+            log.info("查询成功，province："+province);
+            return new CommonResult(200,"查询成功",province);
+        }else {
+            log.info("查询失败，provinceId："+provinceId);
             return new CommonResult(400,"查询失败",null);
         }
     }

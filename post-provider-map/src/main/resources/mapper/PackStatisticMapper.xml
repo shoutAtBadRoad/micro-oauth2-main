@@ -10,8 +10,9 @@
     </insert>
     <insert id="addInPackStatistics">
         insert into package_in_statistic(station,number,expressCompany,curDate)
+        values
         <foreach collection="packSt" item="item" separator=",">
-            values (
+            (
              #{item.stationId},#{item.number},#{item.expressCompany},#{item.curDate}
             )
         </foreach>
@@ -22,8 +23,9 @@
     </insert>
     <insert id="addOutPackStatistics">
         insert into package_out_statistic(station,number,expressCompany,curDate)
+        values
         <foreach collection="packSt" item="item" separator=",">
-            values (
+            (
             #{item.stationId},#{item.number},#{item.expressCompany},#{item.curDate}
             )
         </foreach>

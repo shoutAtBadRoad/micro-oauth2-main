@@ -31,9 +31,10 @@ public class SimulationTask {
     @Resource
     private PackageDao packageDao;
 
-    @Scheduled(cron="0 0/2 * * * *")
+    @Scheduled(cron="0 0/30 * * * *")
     public void runTask(){
-        for(int i=0;i<50;i++){
+        int num = random.nextInt(10)+2;
+        for(int i=0;i<num;i++){
             Pack pack = new Pack();
             pack.setPackId(RandomUtil.randomId(13));
             pack.setReceiverPhone(RandomUtil.randomId(11));
@@ -47,24 +48,29 @@ public class SimulationTask {
         log.info("该批快递入库完成");
     }
 
-    @Scheduled(cron="0 0/1 * * * *")
-    public void runTask2(){
+    @Scheduled(cron="5 0/5 * * * *")
+    public void runTask2() throws InterruptedException {
         List<Pack> list = packageDao.getPackListByStatus(100);
         for(Pack pack : list){
             PackStored packStored = new PackStored(pack);
             packStored.setLocation((1001+random.nextInt(2)+"")+"-"+(1+random.nextInt(5)+""));
             businessService.putPackOnShelf(packStored);
+            Thread.sleep(2000);
         }
         log.info("该批快递上架完成");
     }
 
-    @Scheduled(cron="0 0/1 * * * *")
-    public void runTask3(){
-        List<Pack> list = packageDao.getPackListByStatus(101);
-        for(Pack pack : list){
-            businessService.getPackOffShelf(pack.getPackId());
+    @Scheduled(cron="15 0/15 * * * *")
+    public void runTask3() throws InterruptedException {
+        int num = random.nextInt(10);
+        if(num<=3) {
+            List<Pack> list = packageDao.getPackListByStatus(101);
+            for (Pack pack : list) {
+                businessService.getPackOffShelf(pack.getPackId());
+                Thread.sleep(random.nextInt(6000) + 1000);
+            }
+            log.info("该批快递出库完成");
         }
-        log.info("该批快递出库完成");
     }
 
 

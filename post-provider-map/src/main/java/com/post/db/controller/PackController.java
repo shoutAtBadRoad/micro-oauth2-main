@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.Base64;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @Slf4j
@@ -67,12 +68,12 @@ public class PackController {
 
 
     @ApiOperation(value = "查询驿站15内的入库情况，不分快递公司")
-    @GetMapping("/inStNc15")
+    @GetMapping("/StNc15")
     public CommonResult getInPackStatisticNoCompany15(int stationId){
-        List<PackSt> list = packStatisticService.getStatisticByStation(stationId,15);
-        log.info(list.toString());
-        if(list.size()!=0){
-            return new CommonResult(200,"查询成功",list);
+        Map<String,Object> map = packStatisticService.getStatisticByStation(stationId,15);
+//        log.info(list.toString());
+        if(map!=null){
+            return new CommonResult(200,"查询成功",map);
         }else {
             return new CommonResult(400,"查询失败",null);
         }
@@ -134,6 +135,9 @@ public class PackController {
     @ApiOperation("获取快递的实物图")
     public CommonResult getImage(@PathVariable("packId")@ApiParam("快递单号")String packId){
         ImageByte image1 = packageDao.getImage(packId);
+        if(image1==null){
+            return CommonResult.failed("读取图片失败");
+        }
         Base64.Encoder encoder = Base64.getEncoder();
         String image = encoder.encodeToString(image1.getImgBytes());
         return CommonResult.success(image,"读取图片成功");

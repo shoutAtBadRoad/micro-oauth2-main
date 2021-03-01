@@ -29,7 +29,27 @@ public class StationController {
     @Resource
     private StationCountCache stationCountCache;
 
+    @Resource
+    private PackSendService packSendService;
+    @Resource
+    private StationInfoService stationInfoService;
 
+    @GetMapping("/predict/{station}")
+    @ApiOperation(value = "获取驿站的预计到件情况",response = PackSend.class)
+    public CommonResult getPackWillArrive(@ApiParam(value = "驿站Id")@PathVariable("station")int station){
+        return new CommonResult(200,"查询成功",packSendService.getPackWillArrive(station));
+    }
+
+    @GetMapping("/getDetail/{id}")
+    @ApiOperation(value = "获取驿站内货架详细信息")
+    public CommonResult getDetails(@PathVariable("id")@ApiParam("驿站id") int id){
+        Map<String,Object> map = stationInfoService.getStationInfoById(id);
+        if(map!=null){
+            return CommonResult.success(map);
+        }else {
+            return CommonResult.failed();
+        }
+    }
 
 
     @ApiOperation(value = "addStation")
@@ -86,27 +106,7 @@ public class StationController {
         }
     }
 
-    @Resource
-    private PackSendService packSendService;
-    @Resource
-    private StationInfoService stationInfoService;
 
-    @GetMapping("/predict/{station}")
-    @ApiOperation(value = "获取驿站的预计到件情况",response = PackSend.class)
-    public CommonResult getPackWillArrive(@ApiParam(value = "驿站Id")@PathVariable("station")int station){
-        return new CommonResult(200,"查询成功",packSendService.getPackWillArrive(station));
-    }
-
-    @GetMapping("/getDetail/{id}")
-    @ApiOperation(value = "获取驿站内货架详细信息")
-    public CommonResult getDetails(@PathVariable("id")@ApiParam("驿站id") int id){
-        Map<String,Object> map = stationInfoService.getStationInfoById(id);
-        if(map!=null){
-            return CommonResult.success(map);
-        }else {
-            return CommonResult.failed();
-        }
-    }
 
 
 }

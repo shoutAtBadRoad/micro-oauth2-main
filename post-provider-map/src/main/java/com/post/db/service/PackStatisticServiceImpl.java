@@ -1,16 +1,24 @@
 package com.post.db.service;
 
 import com.post.db.dao.PackStatisticDao;
+import com.post.db.dao.PackageDao;
 import com.post.db.entities.PackSt;
+import com.post.db.entities.TimeMap;
+import com.post.db.utils.SmoothUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class PackStatisticServiceImpl implements PackStatisticService{
     @Resource
     private PackStatisticDao packStatisticDao;
+    @Resource
+    private PackageDao packageDao;
+
     @Override
     public int addOneInPackStatistic(PackSt packSt) {
         return packStatisticDao.addInPackStatistic(packSt);
@@ -32,8 +40,13 @@ public class PackStatisticServiceImpl implements PackStatisticService{
     }
 
     @Override
-    public List<PackSt> getStatisticByStation(int stationId, int part) {
-        return packStatisticDao.getInStatisticByStation(stationId,part);
+    public Map<String,Object> getStatisticByStation(int stationId, int part) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("InNumber",packStatisticDao.getInStatisticByStation(stationId,part));
+        map.put("OutNumber",packStatisticDao.getOutStatisticByStation(stationId,part));
+        List<TimeMap> list = packageDao.getPackInStatisticDaliy(stationId);
+        map.put("InDistribution", SmoothUtil.timeMapDaily(list));
+        return map;
     }
 
     @Override
