@@ -59,13 +59,13 @@ public class PackServiceImpl implements PackService {
 
     @Override
     public List<Pack> getPackListByMobile(String mobile) {
-        return packageDao.getPackListByMobile(mobile);
+        return packageDao.getPackListByMobile(mobile,101);
     }
 
     @Override
     public PageInfo<Pack> getPackListByStation(QueryId queryId) {
         PageHelper.startPage(queryId.getPagenum(),queryId.getPagesize());
-        List<Pack> packs = packageDao.getPackListByStation(queryId.getId());
+        List<Pack> packs = packageDao.getPackListByStation(queryId.getId(),101);
         PageInfo<Pack> pageInfo = new PageInfo<>(packs);
         return pageInfo;
     }
@@ -73,13 +73,13 @@ public class PackServiceImpl implements PackService {
     @Override
     public PageInfo<Pack> getPackListByMobile(QueryId queryId,String mobile) {
         PageHelper.startPage(queryId.getPagenum(),queryId.getPagesize());
-        List<Pack> packs = packageDao.getPackListByMobileAndStation(queryId.getId(),mobile);
+        List<Pack> packs = packageDao.getPackListByMobileAndStation(queryId.getId(),mobile,101);
         PageInfo<Pack> pageInfo = new PageInfo<>(packs);
         return pageInfo;
     }
 
     @Override
     public List<Pack> getPackListByStation(int staionId) {
-        return packageDao.getPackListByStation(staionId);
+        return packageDao.getPackListByStation(staionId,101);
     }
 }

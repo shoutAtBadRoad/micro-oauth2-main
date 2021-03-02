@@ -24,7 +24,7 @@ import java.util.Map;
 
 @RestController
 @Slf4j
-@Api(tags = "快递信息获取接口")
+@Api(tags = "快递信息获取接口，主要为驿站页面提供数据")
 @RequestMapping("/pack")
 public class PackController {
     @Resource
@@ -67,7 +67,7 @@ public class PackController {
     }
 
 
-    @ApiOperation(value = "查询驿站15内的入库情况，不分快递公司")
+    @ApiOperation(value = "查询驿站15天内的统计情况、当天的入库出库时间分布、当天的总出库入库量、剩余件、剩余容量")
     @GetMapping("/StNc15")
     public CommonResult getInPackStatisticNoCompany15(int stationId){
         Map<String,Object> map = packStatisticService.getStatisticByStation(stationId,15);

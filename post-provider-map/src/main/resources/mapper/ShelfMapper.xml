@@ -64,7 +64,7 @@
     </select>
     <select id="countShelfByStation" resultMap="getShelfCount">
         select station,sum(capacity) capacity,sum(stock) stock from p_shelf
-        group by station
+        where station=#{stationId}
     </select>
     <resultMap id="ShelfByCompany" type="com.post.db.entities.ShelfCountByCompany">
         <result property="shelfId" column="shelf"/>

@@ -1,5 +1,8 @@
 import com.post.db.MapServiceMain;
+import com.post.db.dao.PackLogDao;
+import com.post.db.dao.PackStatisticDao;
 import com.post.db.dao.PackageDao;
+import com.post.db.dao.ShelfDao;
 import com.post.db.entities.TimeMap;
 import com.post.db.utils.YSTime;
 import org.junit.Test;
@@ -9,6 +12,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -42,6 +46,30 @@ public class statisticTest {
         System.out.println(list1);
         String time = YSTime.getYMDHMS(31,1,12);
         System.out.println(time);
+    }
+
+    @Resource
+    private PackStatisticDao packStatisticDao;
+
+    @Test
+    public void test1(){
+        List<TimeMap> list = packStatisticDao.InDaily(1);
+        System.out.println(list);
+        List<TimeMap> list1 = packStatisticDao.OnDaily(1);
+        System.out.println(list1);
+        List<TimeMap> list2 = packStatisticDao.OffDaily(1);
+        System.out.println(list2);
+    }
+
+    @Resource
+    private PackLogDao packLogDao;
+    @Resource
+    private ShelfDao shelfDao;
+    @Test
+    public void test2(){
+        System.out.println(packLogDao.getInCountToday(1));
+        System.out.println(packLogDao.getOutCountToday(1));
+        System.out.println(shelfDao.countShelfByStation(1));
     }
 
 }

@@ -32,17 +32,17 @@ public interface PackageDao{
     /*
         根据手机号获取快递列表
     */
-    List<Pack> getPackListByMobile(@Param("mobile")String mobile);
+    List<Pack> getPackListByMobile(@Param("mobile")String mobile,@Param("status")int status);
 
     /*
         根据手机号和驿站号获取快递列表
      */
-    List<Pack> getPackListByMobileAndStation(@Param("stationId")int stationId,@Param("mobile")String mobile);
+    List<Pack> getPackListByMobileAndStation(@Param("stationId")int stationId,@Param("mobile")String mobile,@Param("status")int status);
 
     /*
         根据驿站号获取快递列表
      */
-    List<Pack> getPackListByStation(@Param("stationId")int staionId);
+    List<Pack> getPackListByStation(@Param("stationId")int staionId,@Param("status")int status);
 
     /*
         根据快递状态获取快递列表

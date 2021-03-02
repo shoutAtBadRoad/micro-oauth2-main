@@ -89,7 +89,7 @@ public class Test {
 
     @org.junit.Test
     public void test4() {
-        List<ShelfCount> shelfCounts = shelfDao.countShelfByStation();
+        ShelfCount shelfCounts = shelfDao.countShelfByStation(1);
         System.out.println(shelfCounts.toString());
     }
 

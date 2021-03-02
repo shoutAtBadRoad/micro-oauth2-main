@@ -58,17 +58,17 @@
     <select id="getPackListByMobile" resultMap="getPack">
         select p.id id,p.packId packId,p.receiverPhone receiverPhone,p.station station, p.shelf shelf , e.expressName expressCompany
         from p_package p,p_express e
-        where p.receiverPhone=#{mobile} and p.expressCompany=e.e_id and p.status=1
+        where p.receiverPhone=#{mobile} and p.expressCompany=e.e_id and p.status=#{status}
     </select>
     <select id="getPackListByStation" resultMap="getPack">
         select p.id id,p.packId packId,p.receiverPhone receiverPhone,p.station station, p.shelf shelf , e.expressName expressCompany, p.putInTime putInTime
         from p_package p,p_express e
-        where p.station=#{stationId} and p.expressCompany=e.e_id and p.status=1
+        where p.station=#{stationId} and p.expressCompany=e.e_id and p.status=#{status}
     </select>
     <select id="getPackListByMobileAndStation" resultMap="getPack">
         select p.id id,p.packId packId,p.receiverPhone receiverPhone,p.station station, p.shelf shelf , e.expressName expressCompany, p.putInTime putInTime
         from p_package p,p_express e
-        where p.receiverPhone=#{mobile} and p.expressCompany=e.e_id and p.status=1 and p.station=#{stationId}
+        where p.receiverPhone=#{mobile} and p.expressCompany=e.e_id and p.status=#{status} and p.station=#{stationId}
     </select>
 
     <resultMap id="getImage" type="com.post.db.entity.ImageByte">

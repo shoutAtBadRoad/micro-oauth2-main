@@ -77,4 +77,117 @@
         limit 0,7
     </select>
 
+    <resultMap id="timeMap" type="com.post.db.entities.TimeMap">
+        <result property="time" column="HOUR"/>
+        <result property="value" column="count"/>
+    </resultMap>
+    <select id="InDaily" resultMap="timeMap">
+        SELECT
+           t1. HOUR HOUR,
+           COUNT(t2. HOUR) count
+        FROM
+           (
+              SELECT
+                 DATE_FORMAT(
+                    @cdate := DATE_ADD(@cdate, INTERVAL - 1 HOUR),
+                    '%y-%m-%d %H'
+                 ) HOUR
+              FROM
+                 (
+                    SELECT
+                       @cdate := DATE_ADD(
+                          DATE_FORMAT(NOW(), '%y-%m-%d %H'),
+                          INTERVAL + 1 HOUR
+                       )
+                    FROM
+                       cities
+                 ) t0
+              LIMIT 24
+           ) t1
+        LEFT JOIN (
+           SELECT
+              DATE_FORMAT(putInTime, '%y-%m-%d %H') HOUR
+           FROM
+              p_package
+           WHERE
+              putInTime >= (NOW() - INTERVAL 24 HOUR) and station=#{stationId}
+        ) t2 ON t1. HOUR = t2. HOUR
+        GROUP BY
+           t1. HOUR
+        ORDER BY
+           t1. HOUR;
+    </select>
+    <select id="OnDaily" resultMap="timeMap">
+         SELECT
+           t1. HOUR HOUR,
+           COUNT(t2. HOUR) count
+        FROM
+           (
+              SELECT
+                 DATE_FORMAT(
+                    @cdate := DATE_ADD(@cdate, INTERVAL - 1 HOUR),
+                    '%y-%m-%d %H'
+                 ) HOUR
+              FROM
+                 (
+                    SELECT
+                       @cdate := DATE_ADD(
+                          DATE_FORMAT(NOW(), '%y-%m-%d %H'),
+                          INTERVAL + 1 HOUR
+                       )
+                    FROM
+                       cities
+                 ) t0
+              LIMIT 24
+           ) t1
+        LEFT JOIN (
+           SELECT
+              DATE_FORMAT(curDate, '%y-%m-%d %H') HOUR
+           FROM
+              package_in_log
+           WHERE
+              curDate >= (NOW() - INTERVAL 24 HOUR) and station=#{stationId}
+        ) t2 ON t1. HOUR = t2. HOUR
+        GROUP BY
+           t1. HOUR
+        ORDER BY
+           t1. HOUR;
+    </select>
+    <select id="OffDaily" resultMap="timeMap">
+         SELECT
+           t1. HOUR HOUR,
+           COUNT(t2. HOUR) count
+        FROM
+           (
+              SELECT
+                 DATE_FORMAT(
+                    @cdate := DATE_ADD(@cdate, INTERVAL - 1 HOUR),
+                    '%y-%m-%d %H'
+                 ) HOUR
+              FROM
+                 (
+                    SELECT
+                       @cdate := DATE_ADD(
+                          DATE_FORMAT(NOW(), '%y-%m-%d %H'),
+                          INTERVAL + 1 HOUR
+                       )
+                    FROM
+                       cities
+                 ) t0
+              LIMIT 24
+           ) t1
+        LEFT JOIN (
+           SELECT
+              DATE_FORMAT(p.curDate, '%y-%m-%d %H') HOUR
+           FROM
+              package_out_log p, package_in_log q
+           WHERE
+              p.curDate >= (NOW() - INTERVAL 24 HOUR) and q.station=#{stationId} and q.packId=p.packId
+        ) t2 ON t1. HOUR = t2. HOUR
+        GROUP BY
+           t1. HOUR
+        ORDER BY
+           t1. HOUR;
+    </select>
+
 </mapper>

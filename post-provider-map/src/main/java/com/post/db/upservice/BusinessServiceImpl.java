@@ -68,8 +68,10 @@ public class BusinessServiceImpl implements BusinessService{
         //将货架的快递量-1
         int i = shelfDao.changePackByShelf(packStored.getStation(), stringList.get(0), -1);
         //向取件记录表中添加取件记录
-        if(i1==1 && i==1)
-        return packLogDao.addOutLog(new PackLog(packId, YSTime.getYMDHMS()));
+        if(i1==1 && i==1) {
+            packStored.setCurDate(YSTime.getYMDHMS());
+            return packLogDao.addOutLog(packStored);
+        }
         return 0;
     }
 }

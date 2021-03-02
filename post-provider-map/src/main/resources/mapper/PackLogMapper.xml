@@ -13,13 +13,13 @@
         insert into package_in_log(packId,curDate,location,station) values (#{packId},#{curDate},#{location},#{station})
     </insert>
     <insert id="addOutLog">
-        insert into package_out_log(packId,curDate) values (#{packId},#{curDate})
+        insert into package_out_log(packId,curDate,location,station) values (#{packId},#{curDate},#{location},#{station})
     </insert>
     <select id="getOneInLogById" resultType="com.post.db.entities.PackLog">
         select packId,curDate from package_in_log where id=#{id}
     </select>
     <select id="getOneInLogByPackId" resultMap="getPackLog">
-        select * from package_in_log where packId=#{PackId}
+        select * from package_in_log where packId=#{PackId} limit 1
     </select>
     <select id="getInLogByTime" resultType="com.post.db.entities.PackLog">
         select packId,curDate from package_in_log where curDate between date_sub(now(),interval #{part} day) and now()
@@ -73,6 +73,12 @@
     <select id="getPackOutByArea" resultType="java.lang.Integer">
         select count(*) from package_out_log p,p_package q
         where p.packId=q.packId and day(p.curDate)=day(now()) and q.station in (select s.id from p_station s where s.areaId like #{areaId}"%")
+    </select>
+    <select id="getInCountToday" resultType="java.lang.Integer">
+        select count(*) from package_in_log where station=#{stationId} and DATE_FORMAT(curDate,'%Y-%m-%d')=DATE_FORMAT(now(),'%Y-%m-%d')
+    </select>
+    <select id="getOutCountToday" resultType="java.lang.Integer">
+        select count(*) from package_out_log where station=#{stationId} and DATE_FORMAT(curDate,'%Y-%m-%d')=DATE_FORMAT(now(),'%Y-%m-%d')
     </select>
 
 
