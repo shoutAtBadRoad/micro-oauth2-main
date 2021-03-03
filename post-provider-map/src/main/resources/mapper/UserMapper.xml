@@ -43,7 +43,7 @@
     </select>
 
     <select id="getUsers" resultMap="getUser">
-        select p.userName userName,p.passWd passWd,p.phoneNumber phoneNumber,
+        select p.id id, p.userName userName,p.passWd passWd,p.phoneNumber phoneNumber,
          p.email email,y.name category
          from p_user p,yinshe y where p.category=y.id
 

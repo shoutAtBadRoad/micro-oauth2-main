@@ -1,9 +1,11 @@
-package com.post.db.service;
+package com.post.db.service.impl;
 
 import com.post.db.dao.*;
 import com.post.db.entities.Location;
 import com.post.db.entities.Smap;
 import com.post.db.entities.Station;
+import com.post.db.service.IndexService;
+import com.post.db.service.StationService;
 import com.post.db.utils.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class IndexServiceImpl implements IndexService{
+public class IndexServiceImpl implements IndexService {
     @Resource
     private StationService stationService;
     @Resource
@@ -51,8 +53,8 @@ public class IndexServiceImpl implements IndexService{
         list = fillUp(list,elist);
         map.put("companyNumber",list);
         //装入在库量，已取件
-        map.put("stockNumber",packageDao.getPackNumber(id,1));
-        map.put("pickupNumber",packageDao.getPackNumber(id,2));
+        map.put("stockNumber",packageDao.getPackNumber(id,101));
+        map.put("pickupNumber",packageDao.getPackNumber(id,102));
         //装入问题件，后续再加
         /*????????????????????????????????????????????????????*/
         //如果请求县区数据，需要装入县区的驿站信息

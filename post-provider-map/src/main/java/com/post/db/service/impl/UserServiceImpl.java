@@ -1,4 +1,4 @@
-package com.post.db.service;
+package com.post.db.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -8,6 +8,7 @@ import com.post.db.entities.Shelf;
 import com.post.db.entity.CommonResult;
 import com.post.db.entity.QueryInfo;
 import com.post.db.entity.User;
+import com.post.db.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,7 +18,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
     @Resource
     private UserDao userDao;
 

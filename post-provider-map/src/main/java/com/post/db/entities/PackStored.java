@@ -1,5 +1,7 @@
 package com.post.db.entities;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -15,12 +17,14 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@TableName("package_out_log")
 @ApiModel("快递上架信息类")
 public class PackStored extends PackLog{
 
     @ApiModelProperty("存放的货架编号")
     private String location;
 
+    @TableField("station")
     @ApiModelProperty("所属驿站")
     private int station;
 

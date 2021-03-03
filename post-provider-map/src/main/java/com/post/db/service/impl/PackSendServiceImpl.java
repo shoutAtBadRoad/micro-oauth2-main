@@ -1,9 +1,10 @@
-package com.post.db.service;
+package com.post.db.service.impl;
 
 import com.post.db.dao.PackSendLogDao;
 import com.post.db.dao.StationDao;
 import com.post.db.entities.Smap;
 import com.post.db.entities.Station;
+import com.post.db.service.PackSendService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class PackSendServiceImpl implements PackSendService{
+public class PackSendServiceImpl implements PackSendService {
 
     @Resource
     private StationDao stationDao;

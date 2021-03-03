@@ -1,8 +1,8 @@
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.post.db.MapServiceMain;
-import com.post.db.dao.PackLogDao;
-import com.post.db.dao.PackStatisticDao;
-import com.post.db.dao.PackageDao;
-import com.post.db.dao.ShelfDao;
+import com.post.db.dao.*;
+import com.post.db.daomp.PackLogMapper;
+import com.post.db.entities.PackStored;
 import com.post.db.entities.TimeMap;
 import com.post.db.utils.YSTime;
 import org.junit.Test;
@@ -12,9 +12,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
-import java.sql.Time;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -70,6 +68,28 @@ public class statisticTest {
         System.out.println(packLogDao.getInCountToday(1));
         System.out.println(packLogDao.getOutCountToday(1));
         System.out.println(shelfDao.countShelfByStation(1));
+    }
+    @Test
+    public void test3(){
+        System.out.println(packLogDao.getLatestOutLogs(1,10));
+    }
+
+    @Resource
+    private PackLogMapper packLogMapper;
+    @Test
+    public void test4(){
+        QueryWrapper<PackStored> wrapper = new QueryWrapper<>();
+        List<PackStored> list = packLogMapper.selectList(wrapper.eq("station",1)
+                                                                .between("curDate",YSTime.getYMDHMS(1,0,0),YSTime.getYMDHMS()));
+        System.out.println(list.size());
+    }
+
+    @Resource
+    private ShelfStatisticDao shelfStatisticDao;
+    @Test
+    public void test5(){
+        System.out.println(shelfStatisticDao.getCurShelfInfo(1,102));
+        System.out.println(shelfStatisticDao.getCurShelfInfoByShelf(1,101));
     }
 
 }

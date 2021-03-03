@@ -29,7 +29,7 @@
     </select>
     <select id="getPackageInNumber" resultType="java.lang.Integer">
         select count(*) from package_in_log p left outer join p_package q on p.packId=q.packId
-        where q.station=#{stationId} and q.putIn between date_sub(now(),interval #{part} day) and now()
+        where q.station=#{stationId} and q.putInTime between date_sub(now(),interval #{part} day) and now()
     </select>
     <resultMap id="getPackInStatistic" type="com.post.db.entities.PackSt">
         <result property="stationId" column="station"/>
@@ -55,7 +55,7 @@
     </select>
     <select id="getPackageOutNumber" resultType="java.lang.Integer">
         select count(*) from package_out_log p left outer join p_package q on p.packId=q.packId
-        where q.station=#{stationId} and q.putIn between date_sub(now(),interval #{part} day) and now()
+        where q.station=#{stationId} and q.putInTime between date_sub(now(),interval #{part} day) and now()
     </select>
     <select id="getPackOutStatistic" resultMap="getPackInStatistic">
         select q.station station,count(*) inNumber,q.expressCompany expressCompany,curDate() curDate
@@ -79,6 +79,11 @@
     </select>
     <select id="getOutCountToday" resultType="java.lang.Integer">
         select count(*) from package_out_log where station=#{stationId} and DATE_FORMAT(curDate,'%Y-%m-%d')=DATE_FORMAT(now(),'%Y-%m-%d')
+    </select>
+    <select id="getLatestOutLogs" resultType="com.post.db.entities.PackLog">
+        select packId,curDate from package_out_log where station=#{stationId}
+        order by curDate Desc
+        limit #{number}
     </select>
 
 

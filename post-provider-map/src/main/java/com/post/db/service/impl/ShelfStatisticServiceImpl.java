@@ -1,4 +1,4 @@
-package com.post.db.service;
+package com.post.db.service.impl;
 
 import com.post.db.dao.CompanyDao;
 import com.post.db.dao.ShelfDao;
@@ -7,6 +7,7 @@ import com.post.db.entities.SList;
 import com.post.db.entities.Shelf;
 import com.post.db.entities.ShelfSt;
 import com.post.db.entities.Smap;
+import com.post.db.service.ShelfStatisticService;
 import io.swagger.models.auth.In;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class ShelfStatisticServiceImpl implements ShelfStatisticService{
+public class ShelfStatisticServiceImpl implements ShelfStatisticService {
     @Resource
     private ShelfStatisticDao shelfStatisticDao;
     @Resource
@@ -36,7 +37,7 @@ public class ShelfStatisticServiceImpl implements ShelfStatisticService{
         for(int i: shelfId){
             SList sList = new SList();
             sList.setId(i);
-            sList.setData(new int[]{0,0,0,0,0,0,0,0});
+            sList.setData(new int[]{0,0,0,0,0,0,0,0,0});
             sLists.add(sList);
         }
         for(ShelfSt s : shelfSts){
@@ -55,7 +56,7 @@ public class ShelfStatisticServiceImpl implements ShelfStatisticService{
         for(int i: shelfId){
             SList sList = new SList();
             sList.setId(i);
-            sList.setData(new int[]{0,0,0,0,0,0,0,0});
+            sList.setData(new int[]{0,0,0,0,0,0,0,0,0});
             sLists1.add(sList);
         }
         for(ShelfSt s : shelfSts){

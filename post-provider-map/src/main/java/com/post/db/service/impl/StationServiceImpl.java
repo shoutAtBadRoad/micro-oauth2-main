@@ -1,8 +1,9 @@
-package com.post.db.service;
+package com.post.db.service.impl;
 
 import com.post.db.dao.StationDao;
 import com.post.db.entities.Count;
 import com.post.db.entities.Station;
+import com.post.db.service.StationService;
 import com.post.db.utils.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +11,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class StationServiceImpl implements StationService{
+public class StationServiceImpl implements StationService {
 
     @Resource
     private StationDao stationDao;

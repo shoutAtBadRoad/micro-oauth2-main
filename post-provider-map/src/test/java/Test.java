@@ -135,7 +135,7 @@ public class Test {
         System.out.println(list2);
         List<ShelfSt> list3 = shelfStatisticDao.getOutShelfStatistic(1,150);
         System.out.println(list3);
-        List<ShelfSt> list4 = shelfStatisticDao.getCurShelfInfo(1);
+        List<ShelfSt> list4 = shelfStatisticDao.getCurShelfInfo(1,101);
         System.out.println(list4);
     }
 
@@ -162,11 +162,11 @@ public class Test {
     //货架dao测试
     @org.junit.Test
     public void test13() {
-        List<ShelfSt> list = shelfStatisticDao.getCurShelfInfo(1);
+        List<ShelfSt> list = shelfStatisticDao.getCurShelfInfo(1,101);
         for(ShelfSt s : list){
             System.out.println(s.toString());
         }
-        List<Smap> smaps = shelfStatisticDao.getCurShelfInfoByShelf(1);
+        List<Smap> smaps = shelfStatisticDao.getCurShelfInfoByShelf(1,101);
         System.out.println(smaps.toString());
     }
 

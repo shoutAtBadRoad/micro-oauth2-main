@@ -46,8 +46,8 @@
     <select id="getInStatisticByStationAndCompany" resultMap="getPackInStatistic">
         select station,sum(number) inNumber,expressCompany,curDate from package_in_statistic
         where station=#{stationId} and curDate between date_sub(curDate(),interval #{part} day) and curDate()
-        group by expressCompany
-        order by station,expressCompany
+        group by expressCompany,curDate
+        order by expressCompany,curDate
     </select>
     <select id="getOutStatisticByStation" resultMap="getPackInStatistic">
         select station,sum(number) inNumber,curDate from package_out_statistic
@@ -57,8 +57,8 @@
     <select id="getOutStatisticByStationAndCompany" resultMap="getPackInStatistic">
         select station,sum(number) inNumber,expressCompany,curDate from package_out_statistic
         where station=#{stationId} and curDate between date_sub(curDate(),interval #{part} day) and curDate()
-        group by expressCompany
-        order by station,expressCompany
+        group by expressCompany,curDate
+        order by expressCompany,curDate
     </select>
 
     <select id="getInStatisticByArea" resultType="java.lang.Integer">

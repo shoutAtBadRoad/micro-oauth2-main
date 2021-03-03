@@ -1,4 +1,4 @@
-package com.post.db.service;
+package com.post.db.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -7,13 +7,14 @@ import com.post.db.dao.ShelfDao;
 import com.post.db.entities.Shelf;
 import com.post.db.entity.QueryInfo;
 import com.post.db.own.entity.QueryId;
+import com.post.db.service.ShelfService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class ShelfServiceImpl implements ShelfService{
+public class ShelfServiceImpl implements ShelfService {
     @Resource
     private ShelfDao shelfDao;
 

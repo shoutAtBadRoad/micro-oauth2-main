@@ -120,7 +120,7 @@ public class PackController {
     @ApiOperation("使用驿站快递公司份额")
     public CommonResult getCompanyShare(@PathVariable("station")@ApiParam("驿站号")int station){
         //装入驿站内快递公司的快递数量分布
-        List<Smap> smaps = shelfStatisticDao.getCurShelfInfoByShelf(station);
+        List<Smap> smaps = shelfStatisticDao.getCurShelfInfoByShelf(station,101);
         if(smaps!=null){
             return CommonResult.success(smaps,"获取列表成功");
         }else {

@@ -35,14 +35,15 @@ public class SimulationTask {
     public void runTask(){
         int num = random.nextInt(10)+2;
         for(int i=0;i<num;i++){
+            int stationId = 1+Math.floorMod(i,2);
             Pack pack = new Pack();
             pack.setPackId(RandomUtil.randomId(13));
             pack.setReceiverPhone(RandomUtil.randomId(11));
             pack.setStatus(100);
             pack.setCategory(random.nextInt(3)+501+"");
-            pack.setStationId((1+Math.floorMod(i,2)));
+            pack.setStationId(stationId);
             pack.setExpressCompany(String.valueOf(1+random.nextInt(9)));
-            pack.setShelfId(1+Math.floorMod(i,4));
+            pack.setShelfId(stationId==1 ? 1+Math.floorMod(i,2) : 3+Math.floorMod(i,2));
             businessService.putPackInStation(pack);
         }
         log.info("该批快递入库完成");
@@ -63,7 +64,7 @@ public class SimulationTask {
     @Scheduled(cron="15 0/15 * * * *")
     public void runTask3() throws InterruptedException {
         int num = random.nextInt(10);
-        if(num<=3) {
+        if(num<=1) {
             List<Pack> list = packageDao.getPackListByStatus(101);
             for (Pack pack : list) {
                 businessService.getPackOffShelf(pack.getPackId());

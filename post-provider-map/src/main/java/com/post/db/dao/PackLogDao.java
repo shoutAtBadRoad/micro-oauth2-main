@@ -52,6 +52,9 @@ public interface PackLogDao {
     // 返回今日，驿站的出库总量
     int getOutCountToday(@Param("stationId")int stationId);
 
+    // 返回驿站内最新的几条取件记录
+    List<PackLog> getLatestOutLogs(@Param("stationId")int stationId,@Param("number")int number);
+
 
 
 

@@ -10,28 +10,28 @@
         <result property="company" column="expressCompany"/>
     </resultMap>
     <select id="getInShelfStatistic" resultMap="getShelfSt">
-        select q.shelf id,station,count(*) number,expressCompany
+        select q.shelf id, q.station station,count(*) number,q.expressCompany expressCompany
         from package_in_log p ,p_package q
         where p.packId=q.packId and q.station=#{stationId} and p.curDate between date_sub(curDate(),interval #{part} day) and curDate()
         group by id,expressCompany
-        order by id,expressCompany
+        order by id,expressCompany;
     </select>
     <select id="getInShelfStatisticArc" resultMap="getShelfSt">
-        select q.shelf id,station,count(*) number,expressCompany
+        select q.shelf id,q.station station,count(*) number,q.expressCompany expressCompany
         from package_in_log p ,p_package q
         where p.packId=q.packId and q.station=#{stationId} and p.curDate between date_sub(now(),interval #{part} day) and now()
         group by id,expressCompany
         order by id,expressCompany
     </select>
     <select id="getOutShelfStatistic" resultMap="getShelfSt">
-        select q.shelf id,station,count(*) number,expressCompany
+        select q.shelf id,q.station station,count(*) number,q.expressCompany expressCompany
         from package_out_log p ,p_package q
         where p.packId=q.packId and q.station=#{stationId} and p.curDate between date_sub(curDate(),interval #{part} day) and curDate()
         group by id,expressCompany
         order by id,expressCompany
     </select>
     <select id="getOutShelfStatisticArc" resultMap="getShelfSt">
-        select q.shelf id,station,count(*) number,expressCompany
+        select q.shelf id,q.station station,count(*) number,q.expressCompany expressCompany
         from package_out_log p ,p_package q
         where p.packId=q.packId and q.station=#{stationId} and p.curDate between date_sub(now(),interval #{part} day) and now()
         group by id,expressCompany
@@ -41,14 +41,14 @@
     select count(*) number, s.expressCompany ,s.id from
 	 (select q.shelf id,q.station station,e.expressName expressCompany
         from p_package q ,p_express e
-        where  q.station=#{stationId} and q.status=1 and e.e_id=q.expressCompany
+        where  q.station=#{stationId} and q.status=#{status} and e.e_id=q.expressCompany
         group by id) as s
         group by s.id,s.expressCompany
         order by s.id,s.expressCompany
     </select>
     <select id="getCurShelfInfoByShelf" resultType="com.post.db.entities.Smap">
         select e.expressName name,count(*) value from p_package p,p_express e
-        where p.expressCompany=e.e_id and p.shelf=#{shelfId} and p.status=1
+        where p.expressCompany=e.e_id and p.shelf=#{shelfId} and p.status=#{status}
         group by name
     </select>
 </mapper>
