@@ -134,7 +134,7 @@ public class PackController {
     @GetMapping("/image/{packId}")
     @ApiOperation("获取快递的实物图")
     public CommonResult getImage(@PathVariable("packId")@ApiParam("快递单号")String packId){
-        ImageByte image1 = packageDao.getImage(packId);
+        ImageByte image1 = packageDao.getImage("32435243");
         if(image1==null){
             return CommonResult.failed("读取图片失败");
         }

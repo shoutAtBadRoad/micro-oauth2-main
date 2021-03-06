@@ -39,7 +39,7 @@
     </resultMap>
 
     <select id="getInStatisticByStation" resultMap="getPackInStatistic">
-        select station,sum(number) inNumber,left(curDate,10) curDate from package_in_statistic
+        select station,sum(number) inNumber,date_format(curDate, "%m-%d") curDate from package_in_statistic
         where station=#{stationId} and curDate between date_sub(curDate(),interval #{part} day) and curDate()
         group by curDate
     </select>
@@ -50,7 +50,7 @@
         order by expressCompany,curDate
     </select>
     <select id="getOutStatisticByStation" resultMap="getPackInStatistic">
-        select station,sum(number) inNumber,curDate from package_out_statistic
+        select station,sum(number) inNumber,date_format(curDate, "%m-%d") curDate from package_out_statistic
         where station=#{stationId} and curDate between date_sub(curDate(),interval #{part} day) and curDate()
         group by curDate
     </select>

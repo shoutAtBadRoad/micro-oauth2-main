@@ -12,10 +12,12 @@ import com.post.db.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
@@ -43,8 +45,9 @@ public class UserController {
     private LoginUserHolder loginUserHolder;
 
     @GetMapping("/currentUser")
-    public UserDTO currentUser() {
-        return loginUserHolder.getCurrentUser();
+    @ApiOperation("请求登录用户的具体信息、是否为驿站管理员，如果是则返回其管理的驿站编号、否则返回驿站号为-1")
+    public CommonResult currentUser() {
+        return CommonResult.success(loginUserHolder.getCurrentUser());
     }
 
     @Resource

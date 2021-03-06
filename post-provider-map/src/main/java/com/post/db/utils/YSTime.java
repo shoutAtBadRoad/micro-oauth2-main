@@ -1,5 +1,9 @@
 package com.post.db.utils;
 
+import cn.hutool.core.date.DateField;
+import cn.hutool.core.date.DateTime;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -7,6 +11,7 @@ public class YSTime {
 
     public static final String YMDStr = "yyyy-MM-dd";
     public static final String YMDHMSStr = "yyyy-MM-dd HH:mm:ss";
+    public static final String HMS="HH:mm:ss";
 
     public YSTime(){
 
@@ -45,6 +50,20 @@ public class YSTime {
             s="0"+s;
         }
         return former + " "+h+":"+i+":"+s;
+    }
+
+    public static boolean compareNow(String time){
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat(YMDHMSStr);
+            Date date = sdf.parse(time);
+            DateTime date1 = new DateTime();
+            date1.setField(DateField.MINUTE, 0);
+            date1.setField(DateField.SECOND, 0);
+            return date.before(date1);
+        } catch (Exception e){
+            System.out.println(e);
+        }
+        return true;
     }
 
 }

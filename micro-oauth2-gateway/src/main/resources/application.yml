@@ -1,4 +1,5 @@
 server:
+#  port: 9223
   port: 9201
 spring:
   main:
@@ -10,12 +11,14 @@ spring:
   cloud:
     gateway:
       routes: #配置路由规则
-        - id: oauth2-api-route
-          uri: lb://micro-oauth2-api
+        - id: spost-api-route
+          uri: lb://spost8001
           predicates:
-            - Path=/api/**
+            - Path=/spost/**
           filters:
             - StripPrefix=1
+            - PreserveHostHeader
+            - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
         - id: oauth2-auth-route
           uri: lb://micro-oauth2-auth
           predicates:
@@ -40,11 +43,13 @@ spring:
     oauth2:
       resourceserver:
         jwt:
+#          jwk-set-uri: 'http://101.133.137.140:9222/rsa/publicKey' #配置RSA的公钥访问地址
           jwk-set-uri: 'http://localhost:9401/rsa/publicKey' #配置RSA的公钥访问地址
+
   redis:
     database: 0
     port: 6379
-    host: localhost
+    host: 127.0.0.1
     password:
 secure:
   ignore:
@@ -55,7 +60,10 @@ secure:
       - "/**/swagger-ui.html"
       - "/post/mail/**"
       - "/post/user/register"
-
+      - "/post/mail/get"
+      - "/post/map/location"
+      - "/post/map/data/**"
+      -
 eureka:
   instance:
     hostname: post-gateway
@@ -63,4 +71,5 @@ eureka:
     service-url:
       register-with-eureka: true
       fetch-register: true
+#      defaultZone: http://101.133.137.140:9221/eureka
       defaultZone: http://localhost:7001/eureka

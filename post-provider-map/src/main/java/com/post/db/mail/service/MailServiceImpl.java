@@ -37,11 +37,11 @@ public class MailServiceImpl implements MailService{
 
     @Override
     public boolean testCode(String mail, String code) {
-        String originCode = (String)redisCli.get(mail);
+        String originCode = redisCli.get(mail);
 //        String s = Assert.notNull(originCode, "验证码不存在");
         if(originCode.equals(code)){
             redisCli.expired(mail);
-            System.out.println(redisCli.get(mail));
+            System.out.println(originCode);
             return true;
         }
         return false;
