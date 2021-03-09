@@ -15,6 +15,7 @@
       <module>micro-oauth2-server</module>
       <module>post-provider-map</module>
       <module>leisure</module>
+      <module>micro-reactive</module>
   </modules>
 
   <name>Maven</name>

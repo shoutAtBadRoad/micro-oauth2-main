@@ -54,7 +54,6 @@ public class PackStatisticServiceImpl implements PackStatisticService {
 
     @Override
     public Map<String,Object> getStatisticByStation(int stationId, int part){
-        long start = System.currentTimeMillis();
         Map<String,Object> map = new HashMap<>();
         //装入part天内，每天的入库出库数量
         List<PackSt> inStatisticByStation = packStatisticDao.getInStatisticByStation(stationId, part);
@@ -98,6 +97,7 @@ public class PackStatisticServiceImpl implements PackStatisticService {
 //            lists.add(list);
 //        }
 //        map.put("latestOutLog",lists);
+        long start = System.currentTimeMillis();
         map.put("latestOutLog",getLatestOutLog(stationId,15));
         long end = System.currentTimeMillis();
         log.info("花费时间:"+(end-start)+"ms");
