@@ -1,6 +1,8 @@
 package post.cloud.filter;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.Ordered;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -20,12 +22,14 @@ import java.net.URI;
 import java.util.List;
 
 @Component
-public class IgnoreUrlsRemoveJwtFilter implements WebFilter {
+@Slf4j
+public class IgnoreUrlsRemoveJwtFilter implements WebFilter{
     private static final String MAX_AGE = "18000L";
     @Autowired
     private IgnoreUrlsConfig ignoreUrlsConfig;
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
+        log.info("***********IgnoreUrlsRemoveJwtFilter**************");
         ServerHttpRequest request = exchange.getRequest();
         URI uri = request.getURI();
         PathMatcher pathMatcher = new AntPathMatcher();
@@ -60,4 +64,6 @@ public class IgnoreUrlsRemoveJwtFilter implements WebFilter {
 
         return chain.filter(exchange);
 
-}}
+}
+
+}

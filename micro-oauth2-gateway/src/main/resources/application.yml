@@ -26,7 +26,7 @@ spring:
           filters:
             - StripPrefix=1
             - PreserveHostHeader
-            - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+            - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin Access-Control-Allow-Methods Access-Control-Allow-Headers Vary
         - id: post-map-service
           uri: lb://post-map-service
           predicates:
@@ -34,11 +34,23 @@ spring:
           filters:
             - StripPrefix=1
             - PreserveHostHeader
-            - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+            - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin Access-Control-Allow-Methods Access-Control-Allow-Headers Vary
+        - id: post-websocket
+          uri: lb:ws://post-websocket
+          predicates:
+            - Path=/socket/**
+          filters:
+            - StripPrefix=1
+            - PreserveHostHeader
+            - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin Access-Control-Allow-Methods Access-Control-Allow-Headers Vary
       discovery:
         locator:
           enabled: true #开启从注册中心动态创建路由的功能
           lower-case-service-id: true #使用小写服务名，默认是大写
+#      default-filters:
+#        - PreserveHostHeader
+#        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin Access-Control-Allow-Methods Access-Control-Allow-Headers Vary
+
   security:
     oauth2:
       resourceserver:
@@ -63,7 +75,7 @@ secure:
       - "/post/mail/get"
       - "/post/map/location"
       - "/post/map/data/**"
-      -
+      - "/socket/**"
 eureka:
   instance:
     hostname: post-gateway

@@ -26,7 +26,7 @@ public class ResourceServiceImpl {
         resourceRolesMap = new TreeMap<>();
         resourceRolesMap.put("/auth/oauth/*", CollUtil.toList("ADMIN"));
         resourceRolesMap.put("/api/*", CollUtil.toList("ADMIN"));
-        resourceRolesMap.put("/post/*", CollUtil.toList("ADMIN"));
+        resourceRolesMap.put("/post/*", CollUtil.toList("ADMIN", "USER"));
         resourceRolesMap.put("/api/hello", CollUtil.toList("ADMIN"));
         resourceRolesMap.put("/api/user/currentUser", CollUtil.toList("ADMIN", "USER"));
         resourceRolesMap.put("/post/map/location", CollUtil.toList("ADMIN", "USER"));
