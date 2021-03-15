@@ -11,6 +11,8 @@ public interface UserService {
 
     int addOneUser(User user);
 
+    User getUserById(int id);
+
     CommonResult registerUser(User user);
 
     PageInfo<User> getUsers(QueryInfo queryInfo);

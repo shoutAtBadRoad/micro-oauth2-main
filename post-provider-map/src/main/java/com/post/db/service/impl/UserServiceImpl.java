@@ -4,6 +4,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.post.db.dao.UserDao;
+import com.post.db.daomp.UserMapper;
 import com.post.db.entities.Shelf;
 import com.post.db.entity.CommonResult;
 import com.post.db.entity.QueryInfo;
@@ -19,12 +20,21 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
+
     @Resource
     private UserDao userDao;
+
+    @Resource
+    private UserMapper userMapper;
 
     @Override
     public int addOneUser(User user) {
         return userDao.addOneUser(user);
+    }
+
+    @Override
+    public User getUserById(int id) {
+        return userMapper.selectById(id);
     }
 
     @Override

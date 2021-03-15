@@ -66,6 +66,19 @@ public class UserController {
         }
     }
 
+    @GetMapping("/getUserById/{id}")
+    @ApiOperation("根据用户id获取用户信息")
+    public CommonResult getUserById(@ApiParam("用户ID")@PathVariable("id") int id ) {
+
+        User user = userService.getUserById(id);
+        if(user!=null){
+            return CommonResult.success(user);
+        }else {
+            return CommonResult.failed("查找不到此用户");
+        }
+
+    }
+
     @GetMapping("/getUser")
     @ApiOperation("获取用户列表接口")
     public CommonResult getUserList(@ApiParam(value = "分页查询信息")QueryInfo queryInfo){

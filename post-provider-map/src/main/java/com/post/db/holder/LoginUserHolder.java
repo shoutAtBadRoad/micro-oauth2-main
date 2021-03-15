@@ -4,6 +4,8 @@ import cn.hutool.core.convert.Convert;
 import cn.hutool.json.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.post.db.daomp.StationManagerMapper;
+import com.post.db.daomp.UserMapper;
+import com.post.db.entity.User;
 import com.post.db.entity.UserDTO;
 import com.post.db.entityMp.StationManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,8 @@ public class LoginUserHolder {
 
     @Resource
     private StationManagerMapper stationManagerMapper;
+    @Resource
+    private UserMapper userMapper;
 
     @Autowired
     private ApplicationContext applicationContext;
@@ -43,10 +47,16 @@ public class LoginUserHolder {
         userDTO.setRoles(Convert.toList(String.class,userJsonObject.get("authorities")));
         map.put("userDTO",userDTO);
         StationManager stationManager = mapper.selectOne(new QueryWrapper<StationManager>().eq("name", userJsonObject.getStr("user_name")));
+        User user = userMapper.selectOne(new QueryWrapper<User>().eq("id", Convert.toLong(userJsonObject.get("id"))));
         if(stationManager!=null){
             map.put("station",stationManager.getStation());
         }else {
             map.put("station",-1);
+        }
+        if(user!=null){
+            map.put("mobile",user.getMobile());
+        }else {
+            map.put("mobile","NO MOBILE");
         }
         return map;
     }

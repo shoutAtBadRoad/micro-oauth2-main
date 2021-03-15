@@ -119,6 +119,7 @@ public class PackStatisticServiceImpl implements PackStatisticService {
         return packStatisticDao.getOutStatisticByStationAndCompany(stationId,part);
     }
 
+    // 从数据库或者缓存里拿数据
     public List<List<String>> getLatestOutLog(int stationId,int number){
         String time = redisCli.get(RedisCat.LatestOutTime+stationId);
         List<List<String>> lists = new ArrayList<>();
