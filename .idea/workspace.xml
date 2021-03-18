@@ -19,14 +19,37 @@
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/main" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:main" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2dca5f68-8c37-4a9c-b15c-9854bfb95e5c" name="Default Changelist" comment="新增前端请求查看快递实物图的接口&#10;事务层增加对快递实物图的在数据库的修改（增加）方法&#10;完成了邮箱验证码的发送与验证接口（使用redis来缓存邮箱验证码）&#10;并将此运用在用户的注册功能上" />
+    <list default="true" id="2dca5f68-8c37-4a9c-b15c-9854bfb95e5c" name="Default Changelist" comment="新增前端请求查看快递实物图的接口&#10;事务层增加对快递实物图的在数据库的修改（增加）方法&#10;完成了邮箱验证码的发送与验证接口（使用redis来缓存邮箱验证码）&#10;并将此运用在用户的注册功能上">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_fastjson_1_2_56.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_projectreactor_reactor_test_3_3_10_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_validation_jakarta_validation_api_2_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_validator_hibernate_validator_6_1_5_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_4_1_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mongodb_bson_4_0_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mongodb_mongodb_driver_core_4_0_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mongodb_mongodb_driver_reactivestreams_4_0_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_mongodb_reactive_2_3_4_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_websocket_2_3_4_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_mongodb_3_0_4_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_hateoas_spring_hateoas_1_1_2_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_plugin_spring_plugin_core_2_0_0_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_messaging_5_2_9_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_websocket_5_2_9_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leisure/leisure.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/micro-reactive/micro-reactive.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-oauth2-gateway/micro-oauth2-gateway.iml" beforeDir="false" afterPath="$PROJECT_DIR$/micro-oauth2-gateway/micro-oauth2-gateway.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/post-provider-map/post-provider-map.iml" beforeDir="false" afterPath="$PROJECT_DIR$/post-provider-map/post-provider-map.iml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,7 +78,7 @@
     <option name="generalSettings">
       <MavenGeneralSettings>
         <option name="localRepository" value="E:\idea support\apache-maven-3.6.3\respository" />
-        <option name="mavenHome" value="$PROJECT_DIR$/../../../../IDEA_SUPPORT/apache-maven-3.6.3" />
+        <option name="mavenHome" value="$PROJECT_DIR$/../idea support/apache-maven-3.6.3" />
         <option name="userSettingsFile" value="E:\idea support\apache-maven-3.6.3\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
@@ -84,6 +107,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -94,7 +118,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
@@ -185,9 +209,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.EurekaMain" />
         <item itemvalue="JUnit.StrTest.test1" />
         <item itemvalue="JUnit.UserTest.test6" />
-        <item itemvalue="Spring Boot.EurekaMain" />
         <item itemvalue="Spring Boot.Oauth2GatewayMain" />
         <item itemvalue="Spring Boot.Oauth2AuthMain" />
       </list>
@@ -221,6 +245,7 @@
       <workItem from="1614331987159" duration="620000" />
       <workItem from="1614336241998" duration="7771000" />
       <workItem from="1614345204830" duration="25196000" />
+      <workItem from="1616081456248" duration="38000" />
     </task>
     <task id="LOCAL-00001" summary="添加驿站的预计到件查询">
       <created>1613977592723</created>
@@ -341,53 +366,53 @@
     </state>
     <state x="450" y="148" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1614336896012" />
     <state x="600" y="200" key="FileChooserDialogImpl/0.0.2048.1112@0.0.2048.1112" timestamp="1614168769349" />
-    <state width="1143" height="281" key="GridCell.Tab.0.bottom" timestamp="1614432958325">
-      <screen x="-346" y="-1440" width="1707" height="927" />
+    <state width="1018" height="175" key="GridCell.Tab.0.bottom" timestamp="1616081359985">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1143" height="281" key="GridCell.Tab.0.bottom/-346.-1440.1707.927/0.0.1536.824@-346.-1440.1707.927" timestamp="1614432958325" />
-    <state width="1024" height="72" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1614344895751" />
+    <state width="1018" height="175" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1616081359985" />
     <state width="914" height="255" key="GridCell.Tab.0.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1614328053405" />
-    <state width="1143" height="281" key="GridCell.Tab.0.center" timestamp="1614432958325">
-      <screen x="-346" y="-1440" width="1707" height="927" />
+    <state width="1018" height="175" key="GridCell.Tab.0.center" timestamp="1616081359984">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1143" height="281" key="GridCell.Tab.0.center/-346.-1440.1707.927/0.0.1536.824@-346.-1440.1707.927" timestamp="1614432958325" />
-    <state width="1024" height="72" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1614344895751" />
+    <state width="1018" height="175" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1616081359984" />
     <state width="914" height="255" key="GridCell.Tab.0.center/0.0.2048.1112@0.0.2048.1112" timestamp="1614328053405" />
-    <state width="1143" height="281" key="GridCell.Tab.0.left" timestamp="1614432958325">
-      <screen x="-346" y="-1440" width="1707" height="927" />
+    <state width="1018" height="175" key="GridCell.Tab.0.left" timestamp="1616081359984">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1143" height="281" key="GridCell.Tab.0.left/-346.-1440.1707.927/0.0.1536.824@-346.-1440.1707.927" timestamp="1614432958325" />
-    <state width="1024" height="72" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1614344895751" />
+    <state width="1018" height="175" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1616081359984" />
     <state width="914" height="255" key="GridCell.Tab.0.left/0.0.2048.1112@0.0.2048.1112" timestamp="1614328053405" />
-    <state width="1143" height="281" key="GridCell.Tab.0.right" timestamp="1614432958325">
-      <screen x="-346" y="-1440" width="1707" height="927" />
+    <state width="1018" height="175" key="GridCell.Tab.0.right" timestamp="1616081359985">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1143" height="281" key="GridCell.Tab.0.right/-346.-1440.1707.927/0.0.1536.824@-346.-1440.1707.927" timestamp="1614432958325" />
-    <state width="1024" height="72" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1614344895751" />
+    <state width="1018" height="175" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1616081359985" />
     <state width="914" height="255" key="GridCell.Tab.0.right/0.0.2048.1112@0.0.2048.1112" timestamp="1614328053405" />
-    <state width="1143" height="281" key="GridCell.Tab.1.bottom" timestamp="1614432958326">
-      <screen x="-346" y="-1440" width="1707" height="927" />
+    <state width="1018" height="175" key="GridCell.Tab.1.bottom" timestamp="1616081359985">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1143" height="281" key="GridCell.Tab.1.bottom/-346.-1440.1707.927/0.0.1536.824@-346.-1440.1707.927" timestamp="1614432958326" />
-    <state width="1024" height="72" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1614344895752" />
+    <state width="1018" height="175" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1616081359985" />
     <state width="914" height="255" key="GridCell.Tab.1.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1614328053406" />
-    <state width="1143" height="281" key="GridCell.Tab.1.center" timestamp="1614432958326">
-      <screen x="-346" y="-1440" width="1707" height="927" />
+    <state width="1018" height="175" key="GridCell.Tab.1.center" timestamp="1616081359985">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1143" height="281" key="GridCell.Tab.1.center/-346.-1440.1707.927/0.0.1536.824@-346.-1440.1707.927" timestamp="1614432958326" />
-    <state width="1024" height="72" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1614344895752" />
+    <state width="1018" height="175" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1616081359985" />
     <state width="914" height="255" key="GridCell.Tab.1.center/0.0.2048.1112@0.0.2048.1112" timestamp="1614328053406" />
-    <state width="1143" height="281" key="GridCell.Tab.1.left" timestamp="1614432958326">
-      <screen x="-346" y="-1440" width="1707" height="927" />
+    <state width="1018" height="175" key="GridCell.Tab.1.left" timestamp="1616081359985">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1143" height="281" key="GridCell.Tab.1.left/-346.-1440.1707.927/0.0.1536.824@-346.-1440.1707.927" timestamp="1614432958326" />
-    <state width="1024" height="72" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1614344895752" />
+    <state width="1018" height="175" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1616081359985" />
     <state width="914" height="255" key="GridCell.Tab.1.left/0.0.2048.1112@0.0.2048.1112" timestamp="1614328053406" />
-    <state width="1143" height="281" key="GridCell.Tab.1.right" timestamp="1614432958326">
-      <screen x="-346" y="-1440" width="1707" height="927" />
+    <state width="1018" height="175" key="GridCell.Tab.1.right" timestamp="1616081359985">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1143" height="281" key="GridCell.Tab.1.right/-346.-1440.1707.927/0.0.1536.824@-346.-1440.1707.927" timestamp="1614432958326" />
-    <state width="1024" height="72" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1614344895752" />
+    <state width="1018" height="175" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1616081359985" />
     <state width="914" height="255" key="GridCell.Tab.1.right/0.0.2048.1112@0.0.2048.1112" timestamp="1614328053406" />
     <state width="1143" height="281" key="GridCell.Tab.2.bottom" timestamp="1614431657340">
       <screen x="-346" y="-1440" width="1707" height="927" />
@@ -413,10 +438,10 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="725" y="276" key="RollbackChangesDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1614219593341" />
-    <state x="194" y="113" key="SettingsEditor" timestamp="1614345181155">
+    <state x="194" y="113" key="SettingsEditor" timestamp="1616081495451">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="194" y="113" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1614345181155" />
+    <state x="194" y="113" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1616081495451" />
     <state x="258" y="200" key="SettingsEditor/0.0.2048.1112@0.0.2048.1112" timestamp="1613996600688" />
     <state x="800" y="469" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1614044157333">
       <screen x="0" y="0" width="2048" height="1112" />

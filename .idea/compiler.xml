@@ -7,19 +7,23 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="post-provider-map" />
         <module name="micro-oauth2-api" />
-        <module name="micro-oauth2-gateway" />
+        <module name="leisure" />
+        <module name="micro-reactive" />
         <module name="micro-oauth2-auth" />
         <module name="micro-oauth2-server" />
+        <module name="micro-oauth2-gateway" />
+        <module name="post-provider-map" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="leisure" target="1.8" />
       <module name="micro-oauth2" target="1.8" />
       <module name="micro-oauth2-api" target="1.8" />
       <module name="micro-oauth2-auth" target="1.8" />
       <module name="micro-oauth2-gateway" target="1.8" />
       <module name="micro-oauth2-server" target="1.8" />
+      <module name="micro-reactive" target="1.8" />
       <module name="post-provider-map" target="1.8" />
     </bytecodeTargetLevel>
   </component>
