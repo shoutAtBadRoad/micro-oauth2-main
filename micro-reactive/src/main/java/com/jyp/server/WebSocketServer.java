@@ -17,6 +17,7 @@ import cn.hutool.core.collection.CollUtil;
 import com.alibaba.fastjson.JSON;
 import com.jyp.entity.UserMsg;
 import com.jyp.repository.MsgMongoRepository;
+import com.jyp.service.RedisService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -33,6 +34,9 @@ public class WebSocketServer {
 
     //消息mongodb服务
     public static MessageRepository messageRepository;
+
+    //redis服务
+    public static RedisService redisService;
 
     static Log log=LogFactory.get(WebSocketServer.class);
     //静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。

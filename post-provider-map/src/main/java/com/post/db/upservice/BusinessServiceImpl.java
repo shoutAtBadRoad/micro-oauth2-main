@@ -1,5 +1,7 @@
 package com.post.db.upservice;
 
+import com.post.db.bean.RedisCli;
+import com.post.db.cat.RlistCat;
 import com.post.db.dao.PackLogDao;
 import com.post.db.dao.PackageDao;
 import com.post.db.dao.ShelfDao;
@@ -28,6 +30,8 @@ public class BusinessServiceImpl implements BusinessService{
     private PackLogDao packLogDao;
     @Resource
     private ShelfDao shelfDao;
+    @Resource
+    private RlistCat rlistCat;
 
     @Override
     public int putPackInStation(Pack pack) {
@@ -69,6 +73,8 @@ public class BusinessServiceImpl implements BusinessService{
         int i = shelfDao.changePackByShelf(packStored.getStation(), stringList.get(0), -1);
         //向取件记录表中添加取件记录
         if(i1==1 && i==1) {
+            //向缓存中新增一条记录
+            rlistCat.pushItem(packStored.getStation(),packStored);
             packStored.setCurDate(YSTime.getYMDHMS());
             return packLogDao.addOutLog(packStored);
         }

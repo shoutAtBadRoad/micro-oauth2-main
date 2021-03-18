@@ -22,14 +22,14 @@ import java.util.ArrayList;
 
 //@Component
 @Slf4j
-public class MyCorsFilter implements GlobalFilter, Ordered{
+public class MyCorsFilter implements GlobalFilter{
 
-    @Override
-    public int getOrder() {
-        // 指定位于 NettyWriteResponseFilter 处理完响应体后移除重复 CORS 响应头
-        return NettyWriteResponseFilter.WRITE_RESPONSE_FILTER_ORDER + 1;
-    }
-
+//    @Override
+//    public int getOrder() {
+//        // 指定位于 NettyWriteResponseFilter 处理完响应体后移除重复 CORS 响应头
+//        return NettyWriteResponseFilter.WRITE_RESPONSE_FILTER_ORDER + 1;
+//    }
+//
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         log.info("指定位于 NettyWriteResponseFilter 处理完响应体后移除重复 CORS 响应头");

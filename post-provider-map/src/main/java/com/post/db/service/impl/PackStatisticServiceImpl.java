@@ -3,22 +3,17 @@ package com.post.db.service.impl;
 import com.post.db.bean.RedisCli;
 import com.post.db.dao.PackLogDao;
 import com.post.db.dao.PackStatisticDao;
-import com.post.db.dao.PackageDao;
 import com.post.db.dao.ShelfDao;
 import com.post.db.entities.PackLog;
 import com.post.db.entities.PackSt;
-import com.post.db.entities.TimeMap;
-import com.post.db.entity.RedisCat;
+import com.post.db.cat.RedisCat;
 import com.post.db.service.PackStatisticService;
-import com.post.db.utils.SmoothUtil;
 import com.post.db.utils.YSTime;
-import io.swagger.models.auth.In;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 @Service
 @Slf4j
@@ -121,7 +116,7 @@ public class PackStatisticServiceImpl implements PackStatisticService {
 
     // 从数据库或者缓存里拿数据
     public List<List<String>> getLatestOutLog(int stationId,int number){
-        String time = redisCli.get(RedisCat.LatestOutTime+stationId);
+        String time = (String) redisCli.get(RedisCat.LatestOutTime+stationId);
         List<List<String>> lists = new ArrayList<>();
         boolean b = YSTime.compareNow(time);
         if(time==null || b){

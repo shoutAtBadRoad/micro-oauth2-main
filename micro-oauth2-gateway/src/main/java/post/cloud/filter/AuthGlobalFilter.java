@@ -26,8 +26,6 @@ import static org.slf4j.LoggerFactory.*;
 @Slf4j
 public class AuthGlobalFilter implements GlobalFilter, Ordered {
 
-    private static final String MAX_AGE = "18000L";
-
     private static Logger LOGGER = getLogger(AuthGlobalFilter.class);
 
     @Override
@@ -53,6 +51,6 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
 
     @Override
     public int getOrder() {
-        return -1;
+        return 0;
     }
 }

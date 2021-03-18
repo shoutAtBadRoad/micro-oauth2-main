@@ -75,6 +75,7 @@ secure:
       - "/post/mail/get"
       - "/post/map/location"
       - "/post/map/data/**"
+      - "/post-websocket/**"
       - "/socket/**"
 eureka:
   instance:

@@ -9,7 +9,7 @@ import org.springframework.web.context.request.RequestContextListener;
 
 @SpringBootApplication
 @EnableEurekaClient
-@EnableScheduling
+//@EnableScheduling
 public class MapServiceMain {
     public static void main(String[] args) {
         SpringApplication.run(MapServiceMain.class,args);

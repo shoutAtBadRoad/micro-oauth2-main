@@ -24,15 +24,16 @@ public class ResourceServiceImpl {
     @PostConstruct
     public void initData() {
         resourceRolesMap = new TreeMap<>();
-        resourceRolesMap.put("/auth/oauth/*", CollUtil.toList("ADMIN"));
-        resourceRolesMap.put("/api/*", CollUtil.toList("ADMIN"));
-        resourceRolesMap.put("/post/*", CollUtil.toList("ADMIN", "USER"));
-        resourceRolesMap.put("/api/hello", CollUtil.toList("ADMIN"));
-        resourceRolesMap.put("/api/user/currentUser", CollUtil.toList("ADMIN", "USER"));
-        resourceRolesMap.put("/post/map/location", CollUtil.toList("ADMIN", "USER"));
-        resourceRolesMap.put("/post/map/data", CollUtil.toList("ADMIN", "USER"));
-        resourceRolesMap.put("/post/map/*", CollUtil.toList("ADMIN", "USER"));
-        resourceRolesMap.put("/spost/*", CollUtil.toList("ADMIN", "USER"));
+        resourceRolesMap.put("/auth/oauth/*", CollUtil.toList("ADMIN", "USER", "MANAGER"));
+        resourceRolesMap.put("/api/*", CollUtil.toList("ADMIN", "USER", "MANAGER"));
+        resourceRolesMap.put("/post/*", CollUtil.toList("ADMIN", "USER", "MANAGER"));
+        resourceRolesMap.put("/api/hello", CollUtil.toList("ADMIN", "MANAGER", "USER"));
+        resourceRolesMap.put("/api/user/currentUser", CollUtil.toList("ADMIN", "USER", "MANAGER"));
+        resourceRolesMap.put("/post/map/location", CollUtil.toList("ADMIN", "USER", "MANAGER"));
+        resourceRolesMap.put("/post/map/data", CollUtil.toList("ADMIN", "USER", "MANAGER"));
+        resourceRolesMap.put("/post/map/*", CollUtil.toList("ADMIN", "USER", "MANAGER"));
+        resourceRolesMap.put("/spost/*", CollUtil.toList("ADMIN", "USER", "MANAGER"));
+        resourceRolesMap.put("/socket/*", CollUtil.toList("ADMIN", "USER", "MANAGER"));
         redisTemplate.opsForHash().putAll(RedisConstant.RESOURCE_ROLES_MAP, resourceRolesMap);
     }
 }

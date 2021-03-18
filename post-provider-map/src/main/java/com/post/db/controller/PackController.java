@@ -11,6 +11,7 @@ import com.post.db.entity.ImageByte;
 import com.post.db.own.entity.QueryId;
 import com.post.db.service.PackService;
 import com.post.db.service.PackStatisticService;
+import com.post.db.upservice.BusinessService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -141,6 +142,20 @@ public class PackController {
         Base64.Encoder encoder = Base64.getEncoder();
         String image = encoder.encodeToString(image1.getImgBytes());
         return CommonResult.success(image,"读取图片成功");
+    }
+
+    @Resource
+    private BusinessService businessService;
+
+    @GetMapping("/get/{id}")
+    @ApiOperation("快递取件接口")
+    public CommonResult getPackOut(@PathVariable("id")@ApiParam("快递单号") String packId) {
+
+        int packOffShelf = businessService.getPackOffShelf(packId);
+        if (packOffShelf == 1) {
+            return CommonResult.success(null);
+        }
+        return CommonResult.failed();
     }
 
 

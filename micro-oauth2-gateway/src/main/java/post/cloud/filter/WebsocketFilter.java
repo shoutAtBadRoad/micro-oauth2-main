@@ -15,15 +15,14 @@ import java.util.ArrayList;
 
 import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.GATEWAY_REQUEST_URL_ATTR;
 
-@Component
+//@Component
 @Slf4j
 public class WebsocketFilter implements GlobalFilter, Ordered {
 
-    private final static String DEFAULT_FILTER_PATH = "/ws/info";
+    private final static String DEFAULT_FILTER_PATH = "/webSocket/1/info";
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        log.info("************websocketFilter***************");
         URI requestUrl = exchange.getRequiredAttribute(GATEWAY_REQUEST_URL_ATTR);
         String scheme = requestUrl.getScheme();
         if (!"ws".equals(scheme) && !"wss".equals(scheme)) {
@@ -34,21 +33,6 @@ public class WebsocketFilter implements GlobalFilter, Ordered {
             exchange.getAttributes().put(GATEWAY_REQUEST_URL_ATTR, wsRequestUrl);
         }
         return chain.filter(exchange);
-        //解决返回多个origin信息
-//        return chain.filter(exchange).then(Mono.defer(() -> {
-//            exchange.getResponse().getHeaders().entrySet().stream()
-//                    .filter(kv -> (kv.getValue() != null && kv.getValue().size() > 1))
-//                    .filter(kv -> (kv.getKey().equals(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN)
-//                            || kv.getKey().equals(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS)))
-//                    .forEach(kv ->
-//                    {
-//                        kv.setValue(new ArrayList<String>() {{
-//                            add(kv.getValue().get(0));
-//                        }});
-//                    });
-//
-//            return chain.filter(exchange);
-//        }));
     }
 
     @Override
@@ -61,5 +45,6 @@ public class WebsocketFilter implements GlobalFilter, Ordered {
         return "ws".equals(scheme) ? "http" : "wss".equals(scheme) ? "https" : scheme;
     }
 }
+
 
 

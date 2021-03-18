@@ -1,4 +1,4 @@
-package com.post.db.bean;
+package com.jyp.bean;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -21,8 +21,8 @@ public class RedisCli {
         redisTemplate.opsForValue().set(s,obj);
     }
 
-    public Object get(String key){
-       return key==null ? null : redisTemplate.opsForValue().get(key);
+    public <T> T get(String key){
+       return (T) redisTemplate.opsForValue().get(key);
     }
 
     public void expired(String key){
@@ -43,7 +43,7 @@ public class RedisCli {
         }
     }
 
-    public void popItems(String listName, int num) throws NullPointerException{
+    public <T> List<T> popItems(String listName, int num) throws NullPointerException{
 //        long size = 0;
 //        try{
 //            size = redisTemplate.opsForList().size(listName);
@@ -54,10 +54,14 @@ public class RedisCli {
             clearList(listName);
         }
         else {
-            while(num>0){
+            while (num > 0) {
+                if(num==1){
+                    return (List<T>) redisTemplate.opsForList().leftPop(listName);
+                }
                 redisTemplate.opsForList().leftPop(listName);
                 num--;
             }
         }
+        return null;
     }
 }
