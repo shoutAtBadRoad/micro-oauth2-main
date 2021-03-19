@@ -38,7 +38,7 @@ public class MessageSchedule {
         }
     }
 
-    @Scheduled(cron="0/2 * * * * *")
+//    @Scheduled(cron="0/2 * * * * *")
     public void runTask1() throws IOException {
         log.info(Thread.currentThread().getId()+":开始工作");
         if(redisService.exist()) {

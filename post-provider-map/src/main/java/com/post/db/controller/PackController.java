@@ -1,6 +1,7 @@
 package com.post.db.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.post.db.cat.MessageType;
 import com.post.db.dao.PackageDao;
 import com.post.db.dao.ShelfStatisticDao;
 import com.post.db.entities.Pack;
@@ -17,6 +18,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 import java.util.Base64;
@@ -32,6 +34,10 @@ public class PackController {
     private PackService packService;
     @Resource
     private PackStatisticService packStatisticService;
+    @Resource
+    private RestTemplate restTemplate;
+
+    private final String URL = "http://POST-WEBSOCKET";
 
     @GetMapping("/getList")
     @ApiOperation(value = "获取驿站内所有尚未取走的包裹信息")
@@ -153,6 +159,11 @@ public class PackController {
 
         int packOffShelf = businessService.getPackOffShelf(packId);
         if (packOffShelf == 1) {
+            //调用websocket微服务向用户推送最新消息----->取件记录
+            CommonResult result = restTemplate.getForObject(URL + "/stream/pickup/"+ MessageType.LASTESTOUTLOG.getMid(), CommonResult.class);
+            if(result!=null){
+                log.info(result.getMessage());
+            }
             return CommonResult.success(null);
         }
         return CommonResult.failed();

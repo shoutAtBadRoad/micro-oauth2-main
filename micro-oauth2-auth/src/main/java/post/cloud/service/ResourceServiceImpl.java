@@ -34,6 +34,7 @@ public class ResourceServiceImpl {
         resourceRolesMap.put("/post/map/*", CollUtil.toList("ADMIN", "USER", "MANAGER"));
         resourceRolesMap.put("/spost/*", CollUtil.toList("ADMIN", "USER", "MANAGER"));
         resourceRolesMap.put("/socket/*", CollUtil.toList("ADMIN", "USER", "MANAGER"));
+        resourceRolesMap.put("/ctontcm/*", CollUtil.toList("ADMIN", "USER", "MANAGER"));
         redisTemplate.opsForHash().putAll(RedisConstant.RESOURCE_ROLES_MAP, resourceRolesMap);
     }
 }

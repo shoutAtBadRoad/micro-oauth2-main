@@ -1,6 +1,6 @@
 server:
-  #  port: 9223
-  port: 9201
+    port: 9223
+
 spring:
   main:
     allow-bean-definition-overriding: true
@@ -63,8 +63,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          #          jwk-set-uri: 'http://101.133.137.140:9222/rsa/publicKey' #配置RSA的公钥访问地址
-          jwk-set-uri: 'http://localhost:9401/rsa/publicKey' #配置RSA的公钥访问地址
+          jwk-set-uri: 'http://101.133.137.140:9222/rsa/publicKey' #配置RSA的公钥访问地址
 
   redis:
     database: 0
@@ -85,6 +84,8 @@ secure:
       - "/post/map/data/**"
       - "/post-websocket/**"
       - "/socket/**"
+      - "/spost/**"
+      - "/ctontcm/**"
 eureka:
   instance:
     hostname: post-gateway
@@ -92,5 +93,4 @@ eureka:
     service-url:
       register-with-eureka: true
       fetch-register: true
-      #      defaultZone: http://101.133.137.140:9221/eureka
-      defaultZone: http://localhost:7001/eureka
+      defaultZone: http://101.133.137.140:9221/eureka

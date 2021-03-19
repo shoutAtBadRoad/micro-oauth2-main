@@ -8,10 +8,12 @@ import com.post.db.dao.ShelfDao;
 import com.post.db.entities.Pack;
 import com.post.db.entities.PackLog;
 import com.post.db.entities.PackStored;
+import com.post.db.entity.CommonResult;
 import com.post.db.utils.StringUtils;
 import com.post.db.utils.YSTime;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -32,6 +34,8 @@ public class BusinessServiceImpl implements BusinessService{
     private ShelfDao shelfDao;
     @Resource
     private RlistCat rlistCat;
+
+    private final RestTemplate template = new RestTemplate();
 
     @Override
     public int putPackInStation(Pack pack) {

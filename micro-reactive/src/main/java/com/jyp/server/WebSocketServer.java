@@ -1,5 +1,6 @@
 package com.jyp.server;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -13,23 +14,22 @@ import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
+
 import cn.hutool.core.collection.CollUtil;
 import com.alibaba.fastjson.JSON;
+import com.jyp.cat.MessageType;
 import com.jyp.entity.UserMsg;
-import com.jyp.repository.MsgMongoRepository;
 import com.jyp.service.RedisService;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
-import org.springframework.web.context.ContextLoader;
-import reactor.core.publisher.Mono;
+
 
 
 @ServerEndpoint(value = "/webSocket/{sid}")
 @Component
+@Data
 public class WebSocketServer {
 
     //消息mongodb服务
@@ -41,7 +41,7 @@ public class WebSocketServer {
     static Log log=LogFactory.get(WebSocketServer.class);
     //静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。
     private static int onlineCount = 0;
-    //concurrent包的线程安全Set，用来存放每个客户端对应的MyWebSocket对象。
+    //concurrent包的线程安全Set，用来存放每个客户端对应的MyWebSocket对象
     private static CopyOnWriteArraySet<WebSocketServer> webSocketSet = new CopyOnWriteArraySet<WebSocketServer>();
 
     public static CopyOnWriteArraySet<WebSocketServer>  getItems() {
@@ -51,10 +51,10 @@ public class WebSocketServer {
     //与某个客户端的连接会话，需要通过它来给客户端发送数据
     private Session session;
 
-    //消息唯一id
-    private long mid = 0;
+    //消息服务列表
+    private List<Integer> mid = new ArrayList<>();
 
-    //接收sid
+    //窗口sid
     private String sid="";
     /**
      * 连接建立成功调用的方法*/
@@ -65,6 +65,10 @@ public class WebSocketServer {
         addOnlineCount();           //在线数加1
         log.info("有新窗口开始监听:"+sid+",当前在线人数为" + getOnlineCount());
         this.sid=sid;
+        this.mid.add(MessageType.LASTESTOUTLOG.getMid());
+        this.mid.add(MessageType.OUTTREND.getMid());
+        this.mid.add(MessageType.INTREND.getMid());
+        this.mid.add(MessageType.PEOPLENUM.getMid());
         try {
             sendMessage("连接成功");
         } catch (IOException e) {
@@ -93,8 +97,7 @@ public class WebSocketServer {
         Object parse1 = JSON.parse(message);
         String s = parse1.toString();
         UserMsg userMsg = JSON.parseObject(s,UserMsg.class);
-        userMsg.setId(mid);
-        mid++;
+        userMsg.setId(mid.get(0));
         //历史消息加入队列
 //        Mono<UserMsg> msgMono = messageRepository.save(userMsg);
 //        msgMono.subscribe(System.out::println);

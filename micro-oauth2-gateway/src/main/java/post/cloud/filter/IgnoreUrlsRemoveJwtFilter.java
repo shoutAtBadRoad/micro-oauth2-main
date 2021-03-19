@@ -48,13 +48,16 @@ public class IgnoreUrlsRemoveJwtFilter implements WebFilter{
             HttpMethod requestMethod = requestHeaders.getAccessControlRequestMethod();
             HttpHeaders headers = response.getHeaders();
             headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, requestHeaders.getOrigin());
+//            System.out.println(requestHeaders.getOrigin());
             headers.addAll(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS, requestHeaders
                     .getAccessControlRequestHeaders());
             if (requestMethod != null) {
                 headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, requestMethod.name());
             }
             headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, "true");
-            headers.add(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, "*");
+//            headers.set(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "http://www.njuptsun.xyz");
+            headers.set(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "*");
+            headers.set(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS, "x-requested-with,Authorization,Content-Type");
             headers.add(HttpHeaders.ACCESS_CONTROL_MAX_AGE, MAX_AGE);
             if (request.getMethod() == HttpMethod.OPTIONS) {
                 response.setStatusCode(HttpStatus.OK);
