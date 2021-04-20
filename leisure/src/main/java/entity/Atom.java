@@ -8,6 +8,7 @@ import java.util.concurrent.atomic.AtomicLong;
 @Data
 @Slf4j
 public class Atom {
+
     private final AtomicLong count = new AtomicLong(0);
 
 //    private long count = 0;

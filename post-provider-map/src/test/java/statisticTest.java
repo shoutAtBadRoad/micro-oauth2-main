@@ -3,6 +3,8 @@ import com.post.db.MapServiceMain;
 import com.post.db.dao.*;
 import com.post.db.daomp.PackLogMapper;
 import com.post.db.entities.PackStored;
+import com.post.db.entities.Shelf;
+import com.post.db.entities.ShelfSt;
 import com.post.db.entities.TimeMap;
 import com.post.db.utils.YSTime;
 import org.junit.Test;
@@ -88,8 +90,18 @@ public class statisticTest {
     private ShelfStatisticDao shelfStatisticDao;
     @Test
     public void test5(){
-        System.out.println(shelfStatisticDao.getCurShelfInfo(1,102));
-        System.out.println(shelfStatisticDao.getCurShelfInfoByShelf(1,101));
+        List<Shelf> shelves = shelfDao.getShelfByStation(1);
+        List<Float> useRate = new ArrayList<>();
+        for(Shelf shelf : shelves){
+            useRate.add(((float)shelf.getStock()/shelf.getCapacity()));
+        }
+        System.out.printf("使用率为：%s", useRate);
+//        System.out.println(shelfStatisticDao.getCurShelfInfoByShelf(1,101));
+    }
+
+    @Test
+    public void test6(){
+        System.out.println(shelfStatisticDao.getInShelfStatisticArc(1,15));
     }
 
 }

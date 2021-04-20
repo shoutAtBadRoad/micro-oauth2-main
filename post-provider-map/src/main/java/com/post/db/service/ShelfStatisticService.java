@@ -8,4 +8,6 @@ public interface ShelfStatisticService {
 
     Map<String,Object> getShelfInfoByStation(int stationId);
 
+    Map<String,Object> getShelfDetails(int stationId);
+
 }

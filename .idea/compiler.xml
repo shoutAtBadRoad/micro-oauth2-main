@@ -13,10 +13,12 @@
         <module name="micro-oauth2-auth" />
         <module name="micro-oauth2-server" />
         <module name="micro-oauth2-gateway" />
+        <module name="jiyip" />
         <module name="post-provider-map" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="jiyip" target="1.8" />
       <module name="leisure" target="1.8" />
       <module name="micro-oauth2" target="1.8" />
       <module name="micro-oauth2-api" target="1.8" />

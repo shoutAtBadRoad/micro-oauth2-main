@@ -1,12 +1,10 @@
 package com.post.db.service.impl;
 
 import com.post.db.dao.CompanyDao;
+import com.post.db.dao.PackLogDao;
 import com.post.db.dao.ShelfDao;
 import com.post.db.dao.ShelfStatisticDao;
-import com.post.db.entities.SList;
-import com.post.db.entities.Shelf;
-import com.post.db.entities.ShelfSt;
-import com.post.db.entities.Smap;
+import com.post.db.entities.*;
 import com.post.db.service.ShelfStatisticService;
 import io.swagger.models.auth.In;
 import org.springframework.stereotype.Service;
@@ -25,6 +23,8 @@ public class ShelfStatisticServiceImpl implements ShelfStatisticService {
     private ShelfDao shelfDao;
     @Resource
     private CompanyDao companyDao;
+    @Resource
+    private PackLogDao packLogDao;
 
     @Override
     public Map<String, Object> getShelfInfoByStation(int stationId) {
@@ -76,6 +76,23 @@ public class ShelfStatisticServiceImpl implements ShelfStatisticService {
             list1.add(s.getName());
         }
         map.put("company",list1);
+        return map;
+    }
+
+    /**
+     * 查询货架的详细信息
+     * 货架的使用率
+     * 货架过去7天的上架、取件数量、平均值
+     * @param stationId
+     * @return
+     */
+    @Override
+    public Map<String, Object> getShelfDetails(int stationId) {
+        List<SmapDate> inNumberOfAllShelfByPart = packLogDao.getInNumberOfAllShelfByPart(stationId, 7);
+        List<Smap> avgInNumberOfAllShelfByPart = packLogDao.getAvgInNumberOfAllShelfByPart(stationId, 7);
+        Map<String,Object> map = new HashMap<>();
+        map.put("inNumber",inNumberOfAllShelfByPart);
+        map.put("avgInNumber",avgInNumberOfAllShelfByPart);
         return map;
     }
 }

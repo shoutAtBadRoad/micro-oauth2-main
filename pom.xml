@@ -16,6 +16,7 @@
       <module>post-provider-map</module>
       <module>leisure</module>
       <module>micro-reactive</module>
+    <module>jiyip</module>
   </modules>
 
   <name>Maven</name>

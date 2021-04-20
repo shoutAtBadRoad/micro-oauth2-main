@@ -32,7 +32,7 @@ spring:
             required: true
   redis:
     database: 0
-    host: 127.0.0.1
+    host: 106.15.170.74
     password:
     port: 6379
 #  cloud:

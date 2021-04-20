@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Statistic">
+    <option name="excludedDirectories">
+      <list>
+        <option value="$PROJECT_DIR$/micro-oauth2-api" />
+        <option value="$PROJECT_DIR$/micro-oauth2-auth" />
+        <option value="$PROJECT_DIR$/micro-oauth2-gateway" />
+        <option value="$PROJECT_DIR$/micro-oauth2-server" />
+        <option value="$PROJECT_DIR$/micro-reactive" />
+        <option value="$PROJECT_DIR$/leisure" />
+        <option value="$PROJECT_DIR$/jiyip" />
+      </list>
+    </option>
+  </component>
+</project>

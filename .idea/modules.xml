@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/jiyip/jiyip.iml" filepath="$PROJECT_DIR$/jiyip/jiyip.iml" />
       <module fileurl="file://$PROJECT_DIR$/leisure/leisure.iml" filepath="$PROJECT_DIR$/leisure/leisure.iml" />
       <module fileurl="file://$PROJECT_DIR$/micro-oauth2.iml" filepath="$PROJECT_DIR$/micro-oauth2.iml" />
       <module fileurl="file://$PROJECT_DIR$/micro-oauth2-api/micro-oauth2-api.iml" filepath="$PROJECT_DIR$/micro-oauth2-api/micro-oauth2-api.iml" />

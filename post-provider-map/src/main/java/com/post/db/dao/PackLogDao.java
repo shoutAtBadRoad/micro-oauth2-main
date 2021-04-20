@@ -1,9 +1,6 @@
 package com.post.db.dao;
 
-import com.post.db.entities.PackSt;
-import com.post.db.entities.PackLog;
-import com.post.db.entities.PackStored;
-import com.post.db.entities.Smap;
+import com.post.db.entities.*;
 import io.swagger.models.auth.In;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -55,7 +52,17 @@ public interface PackLogDao {
     // 返回驿站内最新的几条取件记录
     List<PackLog> getLatestOutLogs(@Param("stationId")int stationId,@Param("number")int number);
 
+    // 查询驿站内，单个货架，当天的上架件数
+    Smap getInNumberOfShelf(@Param("stationId")int stationId,@Param("shelfId")String shelfId,@Param("curDate")String curDate);
 
+    // 查询驿站内每一个货架、当天的上架件数
+    List<Smap> getInNumberOfAllShelf(@Param("stationId")int stationId,@Param("curDate")String curDate);
+
+    // 查询驿站内，每一个货架，一段时间内的每一天的上架数（/天）
+    List<SmapDate> getInNumberOfAllShelfByPart(@Param("stationId")int stationId, @Param("part")int part);
+
+    // 查询驿站内，每一个货架，一段时间内的平均上架数（/天）
+    List<Smap> getAvgInNumberOfAllShelfByPart(@Param("stationId")int stationId, @Param("part")int part);
 
 
 }

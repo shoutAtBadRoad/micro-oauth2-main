@@ -85,6 +85,40 @@
         order by curDate Desc
         limit #{number}
     </select>
+    <select id="getInNumberOfShelf" resultType="com.post.db.entities.Smap">
+        select count(*) value,substring(location,1,4) name
+        from package_in_log
+        where station=#{stationId} and substring(location,1,4)=#{shelfId} and DATE_FORMAT(curDate,'%Y-%m-%d')=#{curDate}
+        group by name
+        order by name
+    </select>
+    <select id="getInNumberOfAllShelf" resultType="com.post.db.entities.Smap">
+        select average(count(*)) value,substring(location,1,4) name
+        from package_in_log
+        where station=#{stationId} and DATE_FORMAT(curDate,'%Y-%m-%d')=#{curDate}
+        group by name
+        order by name
+    </select>
+    <select id="getInNumberOfAllShelfByPart" resultType="com.post.db.entities.SmapDate">
+        select sum(value) value,name,curDate
+        from
+        (select count(*) value,substring(location,1,4) name,DATE_FORMAT(curDate,'%Y-%m-%d') curDate
+        from package_in_log
+        where station=#{stationId} and DATE_FORMAT(curDate,'%Y-%m-%d') between date_sub(now(),interval #{part} day) and now()
+        group by curDate,name) a
+        GROUP BY name,curDate
+    </select>
+    <select id="getAvgInNumberOfAllShelfByPart" resultType="com.post.db.entities.Smap">
+        select avg(value) value,name from
+        (select sum(value) value,name,curDate
+        from
+        (select count(*) value,substring(location,1,4) name,DATE_FORMAT(curDate,'%Y-%m-%d') curDate
+        from package_in_log
+        where station=#{stationId} and DATE_FORMAT(curDate,'%Y-%m-%d') between date_sub(now(),interval #{part} day) and now()
+        group by curDate,name) a
+        GROUP BY name,curDate) b
+        GROUP BY name
+    </select>
 
 
 </mapper>
