@@ -10,10 +10,7 @@ import com.post.db.utils.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class IndexServiceImpl implements IndexService {
@@ -43,10 +40,19 @@ public class IndexServiceImpl implements IndexService {
         map.put("todayInNumber",packLogDao.getPackInByArea(id));
         //装入今日出库数
         map.put("todayOutNumber",packLogDao.getPackOutByArea(id));
+        /**
+         * 这块数据先模拟
+         */
         //装入近7天的入库数,暂时没有足够数据，为了有数据先设为70天内
-        map.put("day7InNumber",packStatisticDao.getInStatisticByArea(id,70));
+        List<Integer> day7InNumber = packStatisticDao.getInStatisticByArea(id,70);
+        List<Integer> lastYearNumber = packStatisticDao.getOutStatisticByArea(id,70);
+        for(int i=0;i<7;i++){
+            day7InNumber.set(i, new Random().nextInt(100));
+            lastYearNumber.set(i, new Random().nextInt(100));
+        }
+        map.put("day7InNumber",day7InNumber);
         //装入近7天的出库数
-        map.put("lastYearNumber",packStatisticDao.getOutStatisticByArea(id,70));
+        map.put("lastYearNumber",lastYearNumber);
         //装入各快递公司的快件总量
         List<Smap> list = packageDao.getPackNumberByCompanyAndArea(id);
         List<Smap> elist = companyDao.getCompanyList();

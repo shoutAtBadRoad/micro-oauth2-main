@@ -22,6 +22,7 @@ import java.util.Map;
 @Api(tags = "货架信息获取接口")
 @RequestMapping("/shelf")
 public class ShelfController {
+
     @Resource
     private ShelfService shelfService;
     @Resource

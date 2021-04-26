@@ -93,7 +93,7 @@
         order by name
     </select>
     <select id="getInNumberOfAllShelf" resultType="com.post.db.entities.Smap">
-        select average(count(*)) value,substring(location,1,4) name
+        select count(*) value,substring(location,1,4) name
         from package_in_log
         where station=#{stationId} and DATE_FORMAT(curDate,'%Y-%m-%d')=#{curDate}
         group by name
@@ -117,6 +117,11 @@
         where station=#{stationId} and DATE_FORMAT(curDate,'%Y-%m-%d') between date_sub(now(),interval #{part} day) and now()
         group by curDate,name) a
         GROUP BY name,curDate) b
+        GROUP BY name
+    </select>
+    <select id="getCategoryOfShelf" resultType="com.post.db.entities.Smap">
+        SELECT count(*) value,pk.category name FROM package_in_log pin,p_package pk
+        WHERE LEFT(pin.location,4)=#{location} and pin.packId=pk.packId and pk.`status`=101 and pin.station=#{stationId}
         GROUP BY name
     </select>
 

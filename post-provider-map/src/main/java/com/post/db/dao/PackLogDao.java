@@ -64,5 +64,7 @@ public interface PackLogDao {
     // 查询驿站内，每一个货架，一段时间内的平均上架数（/天）
     List<Smap> getAvgInNumberOfAllShelfByPart(@Param("stationId")int stationId, @Param("part")int part);
 
+    // 查询驿站内，一个货架上各种货物类别的数量
+    List<Smap> getCategoryOfShelf(@Param("stationId")int stationId, @Param("location")String location);
 
 }
