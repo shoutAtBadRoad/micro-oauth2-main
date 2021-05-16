@@ -29,6 +29,12 @@
 <!--            <artifactId>reactor-test</artifactId>-->
 <!--            <scope>test</scope>-->
 <!--        </dependency>-->
+        <!--并发依赖-->
+        <dependency>
+            <groupId>com.github.stephenc.jcip</groupId>
+            <artifactId>jcip-annotations</artifactId>
+            <version>1.0-1</version>
+        </dependency>
     </dependencies>
 
 </project>

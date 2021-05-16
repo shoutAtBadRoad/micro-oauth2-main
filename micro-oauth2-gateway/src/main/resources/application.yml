@@ -1,6 +1,11 @@
 server:
-  #  port: 9223
-  port: 9201
+  port: 9223
+#  port: 9201
+  ssl:
+    key-store: classpath:5007830__njuptsun.xyz.pfx
+#    key-password: 123456
+    key-store-password: 8mNpKeDf
+    key-store-type: PKCS12
 spring:
   main:
     allow-bean-definition-overriding: true
@@ -10,9 +15,12 @@ spring:
     name: micro-oauth2-gateway
   cloud:
     gateway:
+      httpclient:
+        ssl:
+          use-insecure-trust-manager: true
       routes: #配置路由规则
         - id: spost-api-route
-          uri: lb://spost8001
+          uri: lb:http://spost8001
           predicates:
             - Path=/spost/**
           filters:
@@ -20,7 +28,7 @@ spring:
             - PreserveHostHeader
             - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
         - id: oauth2-auth-route
-          uri: lb://micro-oauth2-auth
+          uri: lb:http://micro-oauth2-auth
           predicates:
             - Path=/auth/**
           filters:
@@ -28,7 +36,7 @@ spring:
             - PreserveHostHeader
             - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin Access-Control-Allow-Methods Access-Control-Allow-Headers Vary
         - id: post-map-service
-          uri: lb://post-map-service
+          uri: lb:http://post-map-service
           predicates:
             - Path=/post/**
           filters:
@@ -44,7 +52,7 @@ spring:
             - PreserveHostHeader
             - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin Access-Control-Allow-Methods Access-Control-Allow-Headers Vary
         - id: post-ctontcm-service
-          uri: lb:ws://post-ctontcm-service
+          uri: lb:http://post-ctontcm-service
           predicates:
             - Path=/ctontcm/**
           filters:
@@ -63,8 +71,8 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          #          jwk-set-uri: 'http://101.133.137.140:9222/rsa/publicKey' #配置RSA的公钥访问地址
-          jwk-set-uri: 'http://localhost:9401/rsa/publicKey' #配置RSA的公钥访问地址
+          jwk-set-uri: 'http://101.133.137.140:9222/rsa/publicKey' #配置RSA的公钥访问地址
+#          jwk-set-uri: 'http://localhost:9401/rsa/publicKey' #配置RSA的公钥访问地址
 
   redis:
     database: 0
@@ -92,5 +100,5 @@ eureka:
     service-url:
       register-with-eureka: true
       fetch-register: true
-      #      defaultZone: http://101.133.137.140:9221/eureka
-      defaultZone: http://localhost:7001/eureka
+      defaultZone: http://101.133.137.140:9221/eureka
+#      defaultZone: http://localhost:7001/eureka

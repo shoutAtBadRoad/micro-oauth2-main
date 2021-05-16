@@ -1,11 +1,15 @@
 package post.cloud;
 
+
+import cn.hutool.extra.ssh.Connector;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
-import post.cloud.filter.MyCorsFilter;
 
 @SpringBootApplication
 @EnableDiscoveryClient
@@ -15,8 +19,6 @@ public class Oauth2GatewayMain {
         SpringApplication.run(Oauth2GatewayMain.class,args);
     }
 
-//    @Bean
-//    public MyCorsFilter myCorsFilter(){
-//        return new MyCorsFilter();
-//    }
+
+
 }

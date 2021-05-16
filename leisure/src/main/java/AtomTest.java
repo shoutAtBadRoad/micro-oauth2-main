@@ -1,5 +1,6 @@
-import entity.Atom;
+
 import org.junit.jupiter.api.Test;
+import entity.Atom;
 
 public class AtomTest {
 
