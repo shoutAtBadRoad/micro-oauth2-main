@@ -1,5 +1,6 @@
 package com.post.db.service.impl;
 
+import cn.hutool.core.date.DateUtil;
 import com.post.db.dao.*;
 import com.post.db.entities.Location;
 import com.post.db.entities.Smap;
@@ -38,14 +39,17 @@ public class IndexServiceImpl implements IndexService {
         log.info("areaId = " + areaId);
         Map<String,Object> map = new HashMap<>();
 
+
         int[] packNum = new int[]{1972,4657,3212,4982,3494,2376,2340,3857,2700};
-        int todayInNumber = Arrays.stream(packNum).sum();
+//        int todayInNumber = (int) (Arrays.stream(packNum).sum()*rate);
+        int todayInNumber = getTime();
         int todayOutNumber = (int) (todayInNumber*0.95);
-        int stationNum = 32918;
-        int stockNumber = 1329;
-        int pickupNumber = 2325;
+        int stationNum = (int) (32918);
+        int stockNumber = (int) (1329);
+        int pickupNumber = (int) (2325);
 
         double p = 1;
+        double p2 = 1.0*todayInNumber/Arrays.stream(packNum).sum();
 
         if(areaId.equals("100000")){
 
@@ -60,14 +64,14 @@ public class IndexServiceImpl implements IndexService {
 
             //装入在库量，已取件
 
-            map.put("stockNumber", stockNumber);
-            map.put("pickupNumber", pickupNumber);
+            map.put("stockNumber", (int)(stockNumber*p2));
+            map.put("pickupNumber", (int)(pickupNumber*p2));
 
             List<Smap> list = packageDao.getPackNumberByCompanyAndArea(id);
             List<Smap> elist = companyDao.getCompanyList();
             list = fillUp(list, elist);
             for(int i=0;i<9;i++) {
-                list.get(i).setValue(packNum[i]);
+                list.get(i).setValue((int) (packNum[i]*p2));
             }
             map.put("companyNumber", list);
 
@@ -88,8 +92,8 @@ public class IndexServiceImpl implements IndexService {
 
             //装入在库量，已取件
 
-            int tmp3 = (int) (stockNumber*p);
-            int tmp4 = (int) (pickupNumber*p);
+            int tmp3 = (int) (stockNumber*p*p2);
+            int tmp4 = (int) (pickupNumber*p*p2);
             map.put("stockNumber", tmp3);
             map.put("pickupNumber", tmp4);
 
@@ -97,7 +101,7 @@ public class IndexServiceImpl implements IndexService {
             List<Smap> elist = companyDao.getCompanyList();
             list = fillUp(list, elist);
             for(int i=0;i<9;i++) {
-                list.get(i).setValue((int) (packNum[i]*p));
+                list.get(i).setValue((int) (packNum[i]*p*p2));
             }
             map.put("companyNumber", list);
         }else if(id.length()==4){
@@ -116,8 +120,8 @@ public class IndexServiceImpl implements IndexService {
 
             //装入在库量，已取件
 
-            int tmp3 = (int) (stockNumber*p);
-            int tmp4 = (int) (pickupNumber*p);
+            int tmp3 = (int) (stockNumber*p*p2);
+            int tmp4 = (int) (pickupNumber*p*p2);
             map.put("stockNumber", tmp3);
             map.put("pickupNumber", tmp4);
 
@@ -125,7 +129,7 @@ public class IndexServiceImpl implements IndexService {
             List<Smap> elist = companyDao.getCompanyList();
             list = fillUp(list, elist);
             for(int i=0;i<9;i++) {
-                list.get(i).setValue((int) (packNum[i]*p));
+                list.get(i).setValue((int) (packNum[i]*p*p2));
             }
             map.put("companyNumber", list);
         }else if(id.length()==6){
@@ -144,8 +148,8 @@ public class IndexServiceImpl implements IndexService {
 
             //装入在库量，已取件
 
-            int tmp3 = (int) (stockNumber*p);
-            int tmp4 = (int) (pickupNumber*p);
+            int tmp3 = (int) (stockNumber*p*p2);
+            int tmp4 = (int) (pickupNumber*p*p2);
             map.put("stockNumber", tmp3);
             map.put("pickupNumber", tmp4);
 
@@ -153,7 +157,7 @@ public class IndexServiceImpl implements IndexService {
             List<Smap> elist = companyDao.getCompanyList();
             list = fillUp(list, elist);
             for(int i=0;i<9;i++) {
-                list.get(i).setValue((int) (packNum[i]*p));
+                list.get(i).setValue((int) (packNum[i]*p*p2));
             }
             map.put("companyNumber", list);
             List<Station> stations = stationDao.getStationByArea(id);
@@ -201,6 +205,14 @@ public class IndexServiceImpl implements IndexService {
             lists.add(d);
         }
         return lists;
+    }
+
+    public int getTime(){
+
+        Date date = new Date();
+        int now = 0;
+        now += 60*date.getHours() + date.getMinutes();
+        return (int) (-4.0186e-02*now*now + 1.0916e+02*now - 4.4253e+04);
     }
 
     public List<Smap> fillUp(List<Smap> list,List<Smap> elist){
