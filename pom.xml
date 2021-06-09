@@ -17,6 +17,7 @@
       <module>leisure</module>
       <module>micro-reactive</module>
       <module>concurrent</module>
+      <module>micro-fileupload</module>
   </modules>
 
   <name>Maven</name>

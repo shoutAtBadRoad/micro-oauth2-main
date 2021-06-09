@@ -7,14 +7,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="post-provider-map" />
         <module name="micro-oauth2-api" />
-        <module name="micro-oauth2-gateway" />
+        <module name="concurrent" />
         <module name="micro-oauth2-auth" />
         <module name="micro-oauth2-server" />
+        <module name="micro-oauth2-gateway" />
+        <module name="micro-fileupload" />
+        <module name="post-provider-map" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="concurrent" target="1.8" />
+      <module name="micro-fileupload" target="1.8" />
       <module name="micro-oauth2" target="1.8" />
       <module name="micro-oauth2-api" target="1.8" />
       <module name="micro-oauth2-auth" target="1.8" />
