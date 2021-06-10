@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/micro-oauth2-auth/micro-oauth2-auth.iml" filepath="$PROJECT_DIR$/micro-oauth2-auth/micro-oauth2-auth.iml" />
       <module fileurl="file://$PROJECT_DIR$/micro-oauth2-gateway/micro-oauth2-gateway.iml" filepath="$PROJECT_DIR$/micro-oauth2-gateway/micro-oauth2-gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/micro-oauth2-server/micro-oauth2-server.iml" filepath="$PROJECT_DIR$/micro-oauth2-server/micro-oauth2-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/micro-yt-predict/micro-yt-predict.iml" filepath="$PROJECT_DIR$/micro-yt-predict/micro-yt-predict.iml" />
       <module fileurl="file://$PROJECT_DIR$/post-provider-map/post-provider-map.iml" filepath="$PROJECT_DIR$/post-provider-map/post-provider-map.iml" />
     </modules>
   </component>

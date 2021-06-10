@@ -18,6 +18,7 @@
       <module>micro-reactive</module>
       <module>concurrent</module>
       <module>micro-fileupload</module>
+      <module>micro-yt-predict</module>
   </modules>
 
   <name>Maven</name>

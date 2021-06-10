@@ -14,6 +14,7 @@
         <module name="micro-oauth2-gateway" />
         <module name="micro-fileupload" />
         <module name="post-provider-map" />
+        <module name="micro-yt-predict" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -24,6 +25,7 @@
       <module name="micro-oauth2-auth" target="1.8" />
       <module name="micro-oauth2-gateway" target="1.8" />
       <module name="micro-oauth2-server" target="1.8" />
+      <module name="micro-yt-predict" target="1.8" />
       <module name="post-provider-map" target="1.8" />
     </bytecodeTargetLevel>
   </component>
