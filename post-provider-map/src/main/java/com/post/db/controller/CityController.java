@@ -23,27 +23,27 @@ public class CityController {
 
     @ApiOperation(value = "获取县区信息")
     @GetMapping(value = "/map/city/{id}")
-    public CommonResult getCityName(@PathVariable("id")String cityId){
+    public CommonResult<String> getCityName(@PathVariable("id")String cityId){
         String city = cityService.getCityName(cityId);
         if(city!=null){
             log.info("查询成功，city："+city);
-            return new CommonResult(200,"查询成功",city);
+            return new CommonResult<String>(200,"查询成功",city);
         }else {
             log.info("查询失败，cityId："+cityId);
-            return new CommonResult(400,"查询失败",null);
+            return new CommonResult<String>(400,"查询失败",null);
         }
     }
 
     @ApiOperation(value = "获取省信息")
     @GetMapping("/map/province/{id}")
-    public CommonResult getProvince(@PathVariable("id") String provinceId){
+    public CommonResult<String> getProvince(@PathVariable("id") String provinceId){
         String province = provinceService.getProvince(provinceId);
         if(province!=null){
             log.info("查询成功，province："+province);
-            return new CommonResult(200,"查询成功",province);
+            return new CommonResult<String>(200,"查询成功",province);
         }else {
             log.info("查询失败，provinceId："+provinceId);
-            return new CommonResult(400,"查询失败",null);
+            return new CommonResult<String>(400,"查询失败",null);
         }
     }
 }
