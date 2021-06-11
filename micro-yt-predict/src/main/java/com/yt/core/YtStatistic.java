@@ -28,4 +28,8 @@ public interface YtStatistic {
      * 刷新掉过期数据
      */
     void refresh();
+
+    boolean getSk();
+
+    void trans();
 }

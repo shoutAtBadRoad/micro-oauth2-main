@@ -1,14 +1,13 @@
 package com.yt.core;
 
+import cn.hutool.core.date.DateUnit;
+import cn.hutool.core.date.DateUtil;
 import com.yt.entity.Pack;
 import com.yt.entity.Station;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 
@@ -17,7 +16,9 @@ public class YtStatisticImpl implements YtStatistic{
 
     private ConcurrentHashMap<String, Station> map = new ConcurrentHashMap<String,Station>();
 
-    private HashMap<String,HashMap<String,Integer>> dist = new HashMap<>();
+    private HashMap<String,Map<String,Integer>> dist = new HashMap<>();
+
+    private volatile boolean sk;
 
 
     /**
@@ -26,18 +27,23 @@ public class YtStatisticImpl implements YtStatistic{
     @PostConstruct
     @Override
     public void initialize() {
-        map.put("100",new Station("100"));
+//        map.put("100",new Station("100"));
+        sk = true;
+        Map<String,Integer> tmp = new HashMap<>();
+        tmp.put("100",1440);
+        dist.put("1",tmp);
     }
 
     @Override
     public void compute(List<Pack> packs) {
         Date time = new Date();
         for(Pack pack : packs) {
-            int minutes = TimeUtils.deal(time,pack.getCanvassTime());
+//            int minutes = TimeUtils.deal(time,pack.getCanvassTime());
+            int minutes = (int) DateUtil.between(pack.getCanvassTime(),time, DateUnit.MINUTE);
             String canvasCode = pack.getCanvassOrgCode();
             String deliveryCode = pack.getDeliveryOrgCode();
             int valid = dist.get(canvasCode).get(deliveryCode) - minutes;
-            if(valid > 1440){
+            if(valid >= 1440){
                 return;
             }
             if(map.containsKey(deliveryCode)){
@@ -47,6 +53,7 @@ public class YtStatisticImpl implements YtStatistic{
                     station.ThreeAsc();
                 }else if(valid <= 12*60){
                     station.TwoAsc();
+//                    System.out.println("12hours内");
                 }else {
                     station.OneAsc();
                 }
@@ -90,7 +97,30 @@ public class YtStatisticImpl implements YtStatistic{
     @Override
     public void refresh() {
         System.out.println("*******refresh**********");
+        ConcurrentHashMap.KeySetView<String, Station> strings = map.keySet();
+        for(String s : strings){
+
+            Long aLong = map.get(s).cwList.get(0);
+            boolean f = false;
+            if(aLong >0)
+                f = true;
+            map.get(s).cwList.add(0L);
+            map.get(s).cwList.remove(0);
+            map.get(s).setFour(map.get(s).getFour()-aLong);
+            map.get(s).setTwelve(map.get(s).getTwelve()-aLong);
+            map.get(s).setTFour(map.get(s).getTFour()-aLong);
+            if(f)
+                System.out.println("success");
+        }
+//        System.out.println("*********end************");
     }
 
+    public boolean getSk(){
+        return sk;
+    }
+
+    public void trans(){
+        sk = !sk;
+    }
 
 }
