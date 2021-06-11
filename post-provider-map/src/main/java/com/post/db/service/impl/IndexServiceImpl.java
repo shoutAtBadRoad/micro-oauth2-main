@@ -221,7 +221,7 @@ public class IndexServiceImpl implements IndexService {
             flag=0;
             for(Smap l : list){
                 if(s.getName().equals(l.getName())){
-                 flag=1;
+                    flag=1;
                 }
             }
             if(flag==0){

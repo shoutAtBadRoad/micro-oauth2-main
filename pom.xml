@@ -19,6 +19,9 @@
       <module>concurrent</module>
       <module>leetcode</module>
       <module>micro-yt-predict</module>
+
+      <module>micro-fileupload</module>
+
   </modules>
 
   <name>Maven</name>

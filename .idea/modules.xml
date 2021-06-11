@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/concurrent/concurrent.iml" filepath="$PROJECT_DIR$/concurrent/concurrent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/micro-fileupload/micro-fileupload.iml" filepath="$PROJECT_DIR$/micro-fileupload/micro-fileupload.iml" />
       <module fileurl="file://$PROJECT_DIR$/micro-oauth2.iml" filepath="$PROJECT_DIR$/micro-oauth2.iml" />
       <module fileurl="file://$PROJECT_DIR$/micro-oauth2-api/micro-oauth2-api.iml" filepath="$PROJECT_DIR$/micro-oauth2-api/micro-oauth2-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/micro-oauth2-auth/micro-oauth2-auth.iml" filepath="$PROJECT_DIR$/micro-oauth2-auth/micro-oauth2-auth.iml" />
