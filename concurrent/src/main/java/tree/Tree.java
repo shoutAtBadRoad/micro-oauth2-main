@@ -45,7 +45,7 @@ public class Tree {
     }
 
     public boolean insert(int val){
-       return this.insert(new Tree(val));
+        return this.insert(new Tree(val));
     }
 
     public static Tree remove(Tree root,int v){
@@ -170,3 +170,4 @@ public class Tree {
         System.out.println("tree's height is " + Tree.height(tree));
     }
 }
+
