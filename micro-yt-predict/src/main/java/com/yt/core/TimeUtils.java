@@ -11,7 +11,7 @@ public class TimeUtils {
 
             long f = simpleFormat.parse(simpleFormat.format(to)).getTime();
             long t = simpleFormat.parse(simpleFormat.format(now)).getTime();
-            return (int) ((t - f) / (1000 * 60));
+            return (int) ((f-t) / (1000 * 60));
         }catch (Exception e){
             e.printStackTrace();
         }

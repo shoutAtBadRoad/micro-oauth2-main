@@ -17,11 +17,8 @@
       <module>leisure</module>
       <module>micro-reactive</module>
       <module>concurrent</module>
-      <module>leetcode</module>
-      <module>micro-yt-predict</module>
-
       <module>micro-fileupload</module>
-
+      <module>micro-yt-predict</module>
   </modules>
 
   <name>Maven</name>

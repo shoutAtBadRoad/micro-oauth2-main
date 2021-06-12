@@ -16,8 +16,24 @@ public class DataController {
     @Resource(name = "ytStatistic")
     private YtStatistic ytStatistic;
 
+    /**
+     * 输入代号查询网点 3个预测件数
+     * 测试使用100
+     * @param code
+     * @return
+     */
     @GetMapping("/getCount/{code}")
     public List<Long> getCount(@PathVariable String code){
         return ytStatistic.getCount(code);
+    }
+
+    /**
+     * 打开或关闭模拟快递信息导入
+     * @return
+     */
+    @GetMapping("/close")
+    public String getCount(){
+        ytStatistic.trans();
+        return "OK";
     }
 }
