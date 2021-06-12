@@ -106,9 +106,13 @@ public class YtStatisticImpl implements YtStatistic{
                 f = true;
             map.get(s).cwList.add(0L);
             map.get(s).cwList.remove(0);
-            map.get(s).setFour(map.get(s).getFour()-aLong);
-            map.get(s).setTwelve(map.get(s).getTwelve()-aLong);
-            map.get(s).setTFour(map.get(s).getTFour()-aLong);
+
+            Long two = map.get(s).cwList.get(4*60);
+            Long three = map.get(s).cwList.get(12*60);
+
+            map.get(s).setFour(map.get(s).getFour()-aLong+two);
+            map.get(s).setTwelve(map.get(s).getTwelve()-aLong-two+three);
+            map.get(s).setTFour(map.get(s).getTFour()-aLong-three);
             if(f)
                 System.out.println("success");
         }

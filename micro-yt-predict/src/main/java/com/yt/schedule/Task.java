@@ -41,6 +41,23 @@ public class Task {
         System.out.println("*******compute**********");
     }
 
+//    @Scheduled(cron="* 0/5 * * * *")
+    public void ask(){
+        Thread thread1 = new Thread(() -> {
+           while (true){
+               List<Long> count = ytStatistic.getCount("100");
+               System.out.println(Thread.currentThread() + count.toString());
+           }
+        });
+        Thread thread2 = new Thread(() -> {
+            while (true){
+                List<Long> count = ytStatistic.getCount("100");
+                System.out.println(Thread.currentThread() + count.toString());
+            }
+        });
+        thread1.start();
+        thread2.start();
+    }
 
 
 }
