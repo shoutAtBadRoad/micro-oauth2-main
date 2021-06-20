@@ -93,6 +93,7 @@ secure:
       - "/post/map/data/**"
       - "/post-websocket/**"
       - "/socket/**"
+      - "/spost/photos/**"
 eureka:
   instance:
     hostname: post-gateway
