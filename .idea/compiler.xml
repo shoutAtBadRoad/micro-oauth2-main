@@ -7,23 +7,35 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="iyp-service-chat" />
         <module name="micro-oauth2-api" />
+        <module name="post-provider-map" />
+        <module name="micro-reactive" />
         <module name="concurrent" />
         <module name="micro-oauth2-auth" />
         <module name="micro-oauth2-server" />
-        <module name="micro-oauth2-gateway" />
+        <module name="micro-hutool-practice" />
         <module name="micro-fileupload" />
-        <module name="post-provider-map" />
+        <module name="distributedLock" />
+        <module name="leetcode" />
+        <module name="micro-oauth2-gateway" />
+        <module name="micro-yt-predict" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="concurrent" target="1.8" />
+      <module name="distributedLock" target="1.8" />
+      <module name="iyp-service-chat" target="1.8" />
+      <module name="leetcode" target="1.8" />
       <module name="micro-fileupload" target="1.8" />
+      <module name="micro-hutool-practice" target="1.8" />
       <module name="micro-oauth2" target="1.8" />
       <module name="micro-oauth2-api" target="1.8" />
       <module name="micro-oauth2-auth" target="1.8" />
       <module name="micro-oauth2-gateway" target="1.8" />
       <module name="micro-oauth2-server" target="1.8" />
+      <module name="micro-reactive" target="1.8" />
+      <module name="micro-yt-predict" target="1.8" />
       <module name="post-provider-map" target="1.8" />
     </bytecodeTargetLevel>
   </component>

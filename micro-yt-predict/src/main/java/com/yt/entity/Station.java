@@ -13,15 +13,15 @@ public class Station {
 
     private Date time;
 
-    private volatile Long four;
-    private volatile Long twelve;
-    private volatile Long tFour;
+    private volatile Integer four;
+    private volatile Integer twelve;
+    private volatile Integer tFour;
 
-    public List<Long> cwList;
+    public List<Integer> cwList;
 
     public Station(String code) {
         this.code = code;
-        this.four = this.twelve = this.tFour = 0L;
+        this.four = this.twelve = this.tFour = 0;
         cwList = new CopyOnWriteArrayList<>();
     }
 

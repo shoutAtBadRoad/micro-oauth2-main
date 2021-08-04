@@ -19,6 +19,9 @@
       <module>concurrent</module>
       <module>micro-fileupload</module>
       <module>micro-yt-predict</module>
+      <module>micro-hutool-practice</module>
+      <module>distributedLock</module>
+      <module>iyp-service-chat</module>
   </modules>
 
   <name>Maven</name>

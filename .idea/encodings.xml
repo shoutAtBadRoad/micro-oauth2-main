@@ -2,8 +2,15 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/concurrent/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/distributedLock/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/distributedLock/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/iyp-service-chat/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/iyp-service-chat/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/leetcode/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/micro-fileupload/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/micro-fileupload/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/micro-hutool-practice/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/micro-hutool-practice/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/micro-oauth2-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/micro-oauth2-api/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/micro-oauth2-auth/src/main/java" charset="UTF-8" />
@@ -12,6 +19,10 @@
     <file url="file://$PROJECT_DIR$/micro-oauth2-gateway/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/micro-oauth2-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/micro-oauth2-server/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/micro-reactive/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/micro-reactive/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/micro-yt-predict/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/micro-yt-predict/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/post-provider-map/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/post-provider-map/src/main/resources" charset="UTF-8" />
   </component>

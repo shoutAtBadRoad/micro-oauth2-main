@@ -1,6 +1,5 @@
 package com.post.db.mail.controller;
 
-import com.post.db.bean.RedisCli;
 import com.post.db.entity.CommonResult;
 import com.post.db.mail.service.MailService;
 import io.swagger.annotations.Api;

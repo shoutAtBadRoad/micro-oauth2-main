@@ -14,12 +14,11 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service(value = "ytStatistic")
 public class YtStatisticImpl implements YtStatistic{
 
-    private ConcurrentHashMap<String, Station> map = new ConcurrentHashMap<String,Station>();
+    private final ConcurrentHashMap<String, Station> map = new ConcurrentHashMap<String,Station>();
 
-    private HashMap<String,Map<String,Integer>> dist = new HashMap<>();
+    private final HashMap<String,Map<String,Integer>> dist = new HashMap<>();
 
     private volatile boolean sk;
-
 
     /**
      * dist初始化
@@ -57,17 +56,17 @@ public class YtStatisticImpl implements YtStatistic{
                 }else {
                     station.OneAsc();
                 }
-                Long num = station.cwList.get(valid);
+                Integer num = station.cwList.get(valid);
                 map.get(deliveryCode).cwList.set(valid,num+1);
             }else{
                 Station station = new Station(deliveryCode);
-                List<Long> list = new ArrayList<>();
+                List<Integer> list = new ArrayList<>();
                 for(int i=0;i<1440;i++){
-                    list.add(0L);
+                    list.add(0);
                 }
                 station.cwList.addAll(list);
                 station.setTime(new Date());
-                station.cwList.set(valid,1L);
+                station.cwList.set(valid,1);
                 if(valid<=4*60){
                     station.ThreeAsc();
                 }else if(valid <= 12*60){
@@ -82,8 +81,8 @@ public class YtStatisticImpl implements YtStatistic{
     }
 
     @Override
-    public List<Long> getCount(String code) {
-        List<Long> list = new ArrayList<>();
+    public List<Integer> getCount(String code) {
+        List<Integer> list = new ArrayList<>();
         Station station = map.get(code);
         list.add(station.getFour());
         list.add(station.getTwelve());
@@ -100,15 +99,15 @@ public class YtStatisticImpl implements YtStatistic{
         ConcurrentHashMap.KeySetView<String, Station> strings = map.keySet();
         for(String s : strings){
 
-            Long aLong = map.get(s).cwList.get(0);
+            Integer aLong = map.get(s).cwList.get(0);
             boolean f = false;
             if(aLong >0)
                 f = true;
-            map.get(s).cwList.add(0L);
+            map.get(s).cwList.add(0);
             map.get(s).cwList.remove(0);
 
-            Long two = map.get(s).cwList.get(4*60);
-            Long three = map.get(s).cwList.get(12*60);
+            Integer two = map.get(s).cwList.get(4*60);
+            Integer three = map.get(s).cwList.get(12*60);
 
             map.get(s).setFour(map.get(s).getFour()-aLong+two);
             map.get(s).setTwelve(map.get(s).getTwelve()-aLong-two+three);

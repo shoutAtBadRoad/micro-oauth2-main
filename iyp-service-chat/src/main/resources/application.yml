@@ -1,0 +1,26 @@
+server:
+  port: 8082
+
+myIp: localhost
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://106.15.170.74:3306/iyp?serverTimezone=UTC
+    username: jyp
+    password: jyjyp123
+  resources:
+    static-locations: classpath:/static/
+
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+#management:
+#  endpoints:
+#    web:
+#      cors:
+#        allow-credentials: true
+#        allowed-origins:
+#          - http://localhost:8080
+#          - http://106.15.170.74:8008

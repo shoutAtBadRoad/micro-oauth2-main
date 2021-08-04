@@ -23,7 +23,7 @@ public class DataController {
      * @return
      */
     @GetMapping("/getCount/{code}")
-    public List<Long> getCount(@PathVariable String code){
+    public List<Integer> getCount(@PathVariable String code){
         return ytStatistic.getCount(code);
     }
 

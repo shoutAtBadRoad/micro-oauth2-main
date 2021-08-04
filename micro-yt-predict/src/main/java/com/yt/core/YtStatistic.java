@@ -22,7 +22,7 @@ public interface YtStatistic {
      * @param code
      * @return
      */
-    List<Long> getCount(String code);
+    List<Integer> getCount(String code);
 
     /**
      * 刷新掉过期数据
