@@ -4,11 +4,15 @@ import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
 import com.alibaba.fastjson.JSON;
 
+import com.alibaba.fastjson.JSONObject;
+import iyp.entity.CommonWsMsg;
 import iyp.entity.UserMsg;
 import iyp.service.UserMsgService;
+import iyp.wsService.WsMsgDispatcher;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
@@ -25,6 +29,8 @@ import java.util.concurrent.CopyOnWriteArraySet;
 public class WebSocketServer {
 
     public static UserMsgService userMsgService;
+
+    public static WsMsgDispatcher dispatcher;
 
     static Log log=LogFactory.get(WebSocketServer.class);
     //静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。
@@ -45,18 +51,19 @@ public class WebSocketServer {
     private List<Integer> mid = new ArrayList<>();
 
     //窗口sid
-    private String sid="";
+    private String s_id="";
     /**
      * 连接建立成功调用的方法*/
     @OnOpen
     public void onOpen(Session session,@PathParam("sid") String sid) throws IOException {
         this.session = session;
-        this.sid=sid;
+        this.s_id=sid;
         webSocketSet.add(this);     //加入set中
         int n = 1;
-        if (roomNumber.contains(this.sid)) {
+        if (roomNumber.containsKey(this.s_id)) {
             n = roomNumber.get(sid);
-            roomNumber.put(sid,n+1);
+            n++;
+            roomNumber.put(sid,n);
         }else {
             roomNumber.put(sid,n);
         }
@@ -69,8 +76,8 @@ public class WebSocketServer {
     @OnClose
     public void onClose() {
         webSocketSet.remove(this);  //从set中删除
-        Integer n = roomNumber.get(sid);
-        roomNumber.put(sid,n-1);
+        Integer n = roomNumber.get(s_id);
+        roomNumber.put(s_id,n-1);
         log.info("有一连接关闭！当前在线人数为"+ (n-1));
     }
 
@@ -80,15 +87,16 @@ public class WebSocketServer {
      * @param message 客户端发送过来的消息*/
     @OnMessage
     public void onMessage(String message, Session session) throws IOException {
-        log.info("收到来自窗口"+sid+"的信息:" + session.getId() + " 说："+message);
-        Object parse1 = JSON.parse(message);
-        String s = parse1.toString();
-        UserMsg userMsg = JSON.parseObject(s,UserMsg.class);
-        message = JSON.toJSONString(userMsg);
-        System.out.println(message);
+        log.info("收到来自窗口"+s_id+"的信息:" + session.getId() + " 说："+message);
 
-        sendInfo(message,sid);
-        userMsgService.insert(userMsg);
+        JSONObject jsonObject = JSON.parseObject(message);
+        String clazz = (String) jsonObject.get("type");
+//        WsMsgDispatcher dispatcher = WsMsgDispatcher.getInstance();
+        CommonWsMsg<String> msg = new CommonWsMsg<String>();
+        msg.setType(clazz);
+        msg.setData(message);
+        msg.setChatId(this.s_id);
+        dispatcher.doDispatch(msg);
     }
 
     /**
@@ -119,7 +127,7 @@ public class WebSocketServer {
                 //这里可以设定只推送给这个sid的，为null则全部推送
                 if(sid==null) {
                     item.sendMessage(message);
-                }else if(item.sid.equals(sid)){
+                }else if(item.s_id.equals(sid)){
                     item.sendMessage(message);
                 }
             } catch (IOException e) {

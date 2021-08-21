@@ -26,6 +26,7 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
@@ -37,7 +38,6 @@ import java.net.UnknownHostException;
 @RequestMapping("/user")
 @Slf4j
 @ApiModel("用户接口")
-@CrossOrigin
 public class UserController {
 
     @Resource
@@ -54,21 +54,18 @@ public class UserController {
     private String myIp;
 
     @PostMapping("/login")
-    @ResponseBody
     @ApiOperation("登录接口")
-    @CrossOrigin(allowCredentials = "true")
-    public String login(@ApiParam("用户对象") User user, HttpServletRequest request){
+    public CommonResult<String> login(@ApiParam("用户对象") @RequestBody User user, HttpServletRequest request){
         User login = userService.login(user);
         if(login!=null) {
             request.getSession().setAttribute("userId",login.getId());
-            return String.valueOf(login.getId());
+            return CommonResult.success(String.valueOf(login.getId()),"登录成功");
         }
-        return "false";
+        return CommonResult.failed("登陆失败");
     }
 
     @GetMapping("/getUser/{userId}")
     @ApiOperation("获取用户信息")
-    @CrossOrigin
     public CommonResult<User> getUser(@PathVariable("userId")int id){
         User user = userMapper.selectById(id);
         if (user==null)
@@ -77,12 +74,20 @@ public class UserController {
         return CommonResult.success(user,"success");
     }
 
+    @GetMapping("/getUser")
+    @ApiOperation("获取用户信息")
+    public CommonResult<User> getUser2(HttpSession session){
+        User user = userMapper.selectById((Serializable) session.getAttribute("userId"));
+        if (user==null)
+            return CommonResult.failed("fail");
+        user.setPassWord(MD5Encoder.encode(user.getPassWord().getBytes()));
+        return CommonResult.success(user,"success");
+    }
+
     @PostMapping("/uploadAvatar")
     @ApiOperation("用户头像上传接口")
-    @CrossOrigin(allowCredentials = "true")
-    public CommonResult<String> uploadAvatar(MultipartFile file,
-                                             HttpServletRequest request){
-        int userId = (int) request.getSession().getAttribute("userId");
+    public CommonResult<String> uploadAvatar(@RequestParam("file") MultipartFile file, @RequestParam("userId") Integer userId){
+//        int userId = (int) request.getSession().getAttribute("userId");
         User user = new User();
         user.setId(userId);
         try {
@@ -119,8 +124,8 @@ public class UserController {
 
     @GetMapping("/getAva/{userId}")
     @ApiOperation("获取头像地址")
-    public String getAva(@PathVariable("userId")int userId) throws UnknownHostException {
-        return "http://" + myIp + ":" + port + "/" + userMapper.selectById(userId).getImageUrl();
+    public CommonResult<String> getAva(@PathVariable("userId")int userId) throws UnknownHostException {
+        return CommonResult.success("http://" + myIp + ":" + port + "/" + userMapper.selectById(userId).getImageUrl());
     }
 
     @GetMapping("/getAvatar/{userId}")

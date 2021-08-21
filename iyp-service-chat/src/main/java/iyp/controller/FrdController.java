@@ -3,6 +3,7 @@ package iyp.controller;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import iyp.entity.CommonResult;
 import iyp.entity.iFriend;
 import iyp.mapper.FrdMapper;
 import iyp.service.FriendService;
@@ -25,16 +26,14 @@ public class FrdController {
 
     @GetMapping("/getFrd/{host}")
     @ApiOperation("获取好友列表")
-    @CrossOrigin
-    public List<iFriend> getFrdList(@PathVariable("host") @ApiParam("用户Id") int host){
+    public CommonResult<List<iFriend>> getFrdList(@PathVariable("host") @ApiParam("用户Id") int host){
 
-        return friendService.getFrdList(host);
+        return CommonResult.success(friendService.getFrdList(host));
     }
 
     @PostMapping("/addfrd/{host}/{frd}")
     @ApiOperation("添加好友")
-    @CrossOrigin
-    public String addFrd(@PathVariable("host") int host,@PathVariable("frd")int frd){
-        return friendService.addFrd(host, frd) ? "true" : "false";
+    public CommonResult<String> addFrd(@PathVariable("host") int host,@PathVariable("frd")int frd){
+        return CommonResult.success(friendService.addFrd(host, frd) ? "true" : "false");
     }
 }

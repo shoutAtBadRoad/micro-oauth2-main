@@ -22,8 +22,8 @@ public class UserMsgService {
     private UserMsgMapper userMsgMapper;
 
     public boolean insert(UserMsg userMsg){
+        userMsg.setItime(new DateTime().toString("yyyy-MM-dd hh:MM:ss"));
         int i = userMsgMapper.insert(userMsg);
-        userMsg.setItime(new DateTime().toString("YYYY-mm-DD HH:mm:SS"));
         return i==1;
     }
 
@@ -36,7 +36,7 @@ public class UserMsgService {
     public List<UserMsg> getMsg(int from,int to){
         QueryWrapper<UserMsg> wrapper = new QueryWrapper<>();
         List<UserMsg> toId = userMsgMapper.selectList(wrapper.eq("toId", to).eq("fromId",from)
-                .or().eq("fromId", to).eq("toId", from));
+                .or().eq("fromId", to).eq("toId", from).orderByAsc("id"));
 //        List<UserMsg> msgs = userMsgMapper.selectList(new QueryWrapper<UserMsg>().eq("fromId", to).eq("toId", from));
 //        toId.addAll(msgs);
 //        toId.sort(new Comparator<UserMsg>() {
