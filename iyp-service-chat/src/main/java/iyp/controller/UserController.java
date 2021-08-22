@@ -2,6 +2,8 @@ package iyp.controller;
 
 import cn.hutool.core.io.resource.ResourceUtil;
 import cn.hutool.crypto.digest.MD5;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -10,6 +12,8 @@ import iyp.entity.User;
 import iyp.mapper.UserMapper;
 import iyp.service.ImageService;
 import iyp.service.UserService;
+import iyp.token.Token;
+import iyp.token.TokenBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.security.MD5Encoder;
 import org.springframework.beans.factory.annotation.Value;
@@ -56,10 +60,11 @@ public class UserController {
     @PostMapping("/login")
     @ApiOperation("登录接口")
     public CommonResult<String> login(@ApiParam("用户对象") @RequestBody User user, HttpServletRequest request){
-        User login = userService.login(user);
-        if(login!=null) {
-            request.getSession().setAttribute("userId",login.getId());
-            return CommonResult.success(String.valueOf(login.getId()),"登录成功");
+        String secret = userService.login(user);
+        log.info(user.toString());
+        if(!secret.equals("")) {
+//            request.getSession().setAttribute("userId",);
+            return CommonResult.success(secret,"登录成功");
         }
         return CommonResult.failed("登陆失败");
     }
@@ -72,6 +77,17 @@ public class UserController {
             return CommonResult.failed("fail");
         user.setPassWord(MD5Encoder.encode(user.getPassWord().getBytes()));
         return CommonResult.success(user,"success");
+    }
+
+    @GetMapping("/getUser2")
+    @ApiOperation("通过token获得用户信息")
+    public CommonResult<User> getUser3(HttpServletRequest request){
+        String s = request.getHeader("token");
+        Token token = TokenBuilder.decode(s);
+        int id = Integer.parseInt(token.getUser());
+        User user = userMapper.selectById(id);
+        user.setPassWord(MD5Encoder.encode(user.getPassWord().getBytes()));
+        return CommonResult.success(user,"成功");
     }
 
     @GetMapping("/getUser")
@@ -125,7 +141,7 @@ public class UserController {
     @GetMapping("/getAva/{userId}")
     @ApiOperation("获取头像地址")
     public CommonResult<String> getAva(@PathVariable("userId")int userId) throws UnknownHostException {
-        return CommonResult.success("http://" + myIp + ":" + port + "/" + userMapper.selectById(userId).getImageUrl());
+        return CommonResult.success("http://" + myIp + ":" + port + "/" + userMapper.selectById(userId).getImageUrl(),"成功");
     }
 
     @GetMapping("/getAvatar/{userId}")

@@ -1,7 +1,7 @@
 server:
+#  port: 8088
   port: 8082
-
-myIp: localhost
+myIp: 106.15.170.74
 
 spring:
   datasource:
